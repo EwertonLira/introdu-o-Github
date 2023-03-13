@@ -37,5 +37,4 @@ def questão3():
     Olá {nome} com sua idade de {idade} anos
     a sua faixa etária é {faixaetaria}.\n""")
 
-questão3()
 
