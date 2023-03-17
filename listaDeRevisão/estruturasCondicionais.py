@@ -18,23 +18,35 @@
 def questão1():
        
     valorEntrada = float(input("Insira um número qualquer: "))
-    if valorEntrada == 0:
+    if valorEntrada == 0: # verifica se igual a zero
         print("O número é igual a Zero.")
-    elif valorEntrada > 0:
+    elif valorEntrada > 0: # verifica se maior que zero
         print("O número é positivo.")
-    else:
+    else: # mostra os resultados negativos.
         print("O número é negativo")
 
 def questão2():
 
     nome = input("Insira o seu nome: ")
     idade = int(input("Insira a sua idade: "))
-
+    # vai reficar em qual condição a idade dele se encaixa e vai retornar uma mensagem.
     if idade < 18:
-        print("Você é menor de idade")
+        print(f"{nome.capitalize()} você é menor de idade") 
     elif idade >= 18 and idade < 65:
-        print("Você é adulto")
+        print(f"{nome.capitalize()} você é adulto")
     else:
-        print("Você é adulto")
-        
+        print(f"{nome.capitalize()} você é idoso")
+    
+def questão3():
+    
+    notaAluno = float(input("Digite a Nota do aluno: "))
+
+    if notaAluno >= 7: # verificar se maior que 7 a nota do aluno.
+        print("Aprovado")
+    elif notaAluno >= 5 and notaAluno < 7: # verifica se a nota do aluno está entre 5 e 7.
+        print("Recuperação")
+    else: # A nota do aluno é menor que 5 caso chegue aqui.
+        print("Reprovado")
+
+
 

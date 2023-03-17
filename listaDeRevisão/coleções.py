@@ -39,27 +39,31 @@ def questão2():
 def questão3():
     listaNumero = []
     portaLógica = True
-    print("Insira números inteiros e aperter [S] para confirmar ou [N] para Cancelar")
-    while portaLógica :
-        valorDeEntrada = input("Insira um número inteiro ou tecle [S]/[N]: ")
+    
+    print("\nInsira números inteiros e digite [S] para confirmar ou [N] para Cancelar")
+    
+    while portaLógica : # comando de repetição para receber número e 2 comandos [s] e [n].
+        valorDeEntrada = input("Insira um número inteiro ou digite [S]/[N]: ")
         
         contador = 0
-        for letra in valorDeEntrada:
+        for letra in valorDeEntrada: # for para verificar se a string recebida tem somente números.
             if letra in ["0","1","2","3","4","5","6","7","8","9"]:
                 contador += 1
         
-        if contador == len(valorDeEntrada):
+        if contador == len(valorDeEntrada): # se a string recebida tem somente números então e convertido em inteiro e adicionado a lista.
             listaNumero.append(int(valorDeEntrada))
-        elif valorDeEntrada in ["s","S"]:
+        elif valorDeEntrada in ["s","S"]: # se a string recebida for um [S] então saimos do loop.
             portaLógica = False
-        elif valorDeEntrada in ["n","N"]:
+        elif valorDeEntrada in ["n","N"]: # se a string recebida for um [N] então limpamos a lista e saimos do loop, deixando uma mensagem.
             listaNumero.clear()
             portaLógica = False
             print("[]")
             print("fim da aplicação")
-        else:
-            print("Insira um número inteiro ou tecle [S]/[N]: Continue apenas números inteiros ou [S] ou [N]")
+        else: # os outros resultados invalidos ficam nessa opção.
+            print("Insira um número inteiro ou digite [S]/[N]: Continue apenas com números inteiros ou [S] ou [N]") 
     
-    print(listaNumero)
+    listaNumero = set(listaNumero) # tranforma a lista em conjunto, pois conjunto não mostra elementos repetidos.
+    listaNumero = list(listaNumero) # tranforma connjunto em lista, pois lista aceita modificações.
+    listaNumero.sort() # organiza a lista
+    print(f"A sua lista de número sem os números repetidos:\n{listaNumero}\n") # imprime o resultado na tela
 
-questão3()
