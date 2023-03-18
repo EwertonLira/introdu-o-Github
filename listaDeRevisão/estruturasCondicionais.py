@@ -48,5 +48,26 @@ def questão3():
     else: # A nota do aluno é menor que 5 caso chegue aqui.
         print("Reprovado")
 
+def questão4():
+    
+    idade = int(input("Digite a sua idade: "))
+    portaLógica = True # fazer o while iniciar.
+    print("Digite [M] para o sexo masculino e [F] para o Feminino.")
+    while portaLógica:
+        sexo = input(": ")
+        if sexo in ["M","m"] and idade < 25: # str for [m] e idade menor que 25, vai printar a mensagem e vai parar o while.
+            print("Você é um jovem homem.")
+            portaLógica = False
+        elif sexo in sexo in ["M","m"] and idade >= 25: # str for [m] e idade maior ou igual que 25, vai printar a mensagem e vai parar o while.
+            print("Você é um homem adulto.")
+            portaLógica = False
+        elif sexo in sexo in ["F","f"] and idade < 25: # str for [f] e idade menor que 25, vai printar a mensagem e vai parar o while.
+            print("Você é uma jovem mulher.")
+            portaLógica = False  
+        elif sexo in sexo in ["F","f"] and idade >= 25: # str for [f] e idade maior ou igual que 25, vai printar a mensagem e vai parar o while.
+            print("Você é uma mulher adulta.")
+            portaLógica = False
+        else: # o vai repetir essa mensagem enquanto uma das condições acima não for atendida.
+            print("Digite apenas [M] para masculino ou [F] para feminino.")
 
 
