@@ -28,26 +28,36 @@ def questão3():
         print(f'{numero:02}. {numero}x{valorDaTabuda} = {(numero*valorDaTabuda):02}') # o {:02} serve para prencher com zeros a esquerda do número.
 
 def questão4():
-    # essa parte serve para verificar se somente número inteiros vai entrar no input
-    # caso não seja número intiro, vai ficar repetindo até conseguir um número inteiro
+    # essa parte serve para verificar se somente número natural vai entrar no input
+    # caso não seja número natural, vai ficar repetindo até conseguir um número natural
     try:
-        valorDeEntrada = int(input("insira um número natural para saber se é primo: "))
+        valorDeEntrada = int(input("insira um número natural: "))
     except:
         valorDeEntrada = 1
     
     while valorDeEntrada < 2:
        try:
-        valorDeEntrada = int(input("insira um número natural maior 1: "))
+        valorDeEntrada = int(input("Por favor insira um número natural: "))
        except:
            valorDeEntrada = 1
 
    # essa parte vai calcular um número se é primo ou não 
-    for numero in range(2,valorDeEntrada):
-        if valorDeEntrada % numero == 0: # pega o valor de entrada e dividi por todos os número, exceto por 1 e ele mesmo:
-            print(f'O número {valorDeEntrada} não é primo.') # caso ocorra alguma divisão com resto zero, printa a mensagem e encerra a aplicação.
-            break
-    else:
-       print(f"O número {valorDeEntrada} é primo!") #caso o for rode até o final ele cai no else, avisando que não teve nenhuma divisão com resto zero.
+    listaOrdenada = set() # criamos dois conjuntos pois conjuntos não permite variáveis repetidas. um conjunto de numeros naturais e outros de não primos.
+    listaNaoPrimo = set()
+
+    for numero in range(valorDeEntrada): # esse for serve para mostrar cada número até o número inserido pelo usuário.
+        novoValorDeEntrada = valorDeEntrada - numero
+            
+        for cadaNumero in range(2,novoValorDeEntrada): # nesse for faz a divisão de cada número pelos numeros com valor abaixo dele para saber se não é primo.
+            if novoValorDeEntrada % cadaNumero == 0:
+                listaNaoPrimo.add(novoValorDeEntrada)
+        
+    for numeracao in range(2,(valorDeEntrada +1)): # cria uma lista de números do 2 até o numero escolhido pelo usuário
+        listaOrdenada.add(numeracao)
     
+    listaPrimos =  listaOrdenada - listaNaoPrimo # aqui o conunto "listaOrdenada" diferença"-" listaNaoPrimo vai mostraro que somente está contindo na listaOrdenada(somente os primos)
 
+    print("Números primos até o",valorDeEntrada)
+    print(listaPrimos)#mostra o conjunto na tela
 
+questão4()
