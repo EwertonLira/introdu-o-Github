@@ -60,4 +60,3 @@ def questão4():
     print("Números primos até o",valorDeEntrada)
     print(listaPrimos)#mostra o conjunto na tela
 
-questão4()
