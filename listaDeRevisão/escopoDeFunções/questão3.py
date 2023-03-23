@@ -34,7 +34,7 @@ while rodarWhile: # esse while vai fazer o o programa repetir caso o usuário de
             rodarWhile2 = False
         except:
             print("entrada inválida, Somente numeros inteiros. preencha a lista novamente")
-            listaDoUsuario.clear() # se ocorrer algum erro a lista e limpa e começa novamente.
+            listaDoUsuario.clear() # se ocorrer algum erro, a lista é limpa e começa novamente.
 
     ResultadoDaFuncao = mediaLista(listaDoUsuario) # aqui a função é chamada.
     if ResultadoDaFuncao != None and ResultadoDaFuncao != 0: # se o resultado diferente de zero ou None ele mostra o resultado
@@ -48,15 +48,15 @@ while rodarWhile: # esse while vai fazer o o programa repetir caso o usuário de
     print("Deseja usar novamente o programa?")
     while rodarWhile3:
             repetirScript = input("[S]sim ou [N]não: ") 
-            if repetirScript in ["s","S","sim","Sim","n","N","não","Não","nao","Nao"]: # verificar se entrou um dado válido.
+            if repetirScript in ["s","S","sim","Sim","n","N","não","Não","nao","Nao"]: # verifica se entrou um dado válido.
                 rodarWhile3 = False
             else:
                 print("digite sim ou não ou tecle [S] ou [N] e aperte ENTER")
                 
-    if repetirScript in ["s","S","sim","Sim"]: #caso o usurio queira usar novamente, lipamos a lista e deixamos os whiles True novamente.
+    if repetirScript in ["s","S","sim","Sim"]: #caso o usuário queira usar novamente, lipamos a lista e deixamos os whiles True novamente.
         listaDoUsuario.clear()
         rodarWhile1 = True
         rodarWhile2 = True
         rodarWhile3 = True
     else:
-        rodarWhile = False # caso não queria fechamos o programa  
+        rodarWhile = False # caso não queira fechamos o programa  
