@@ -6,8 +6,8 @@
 """
 def questão1():
     numerosImpares = []
-    for numero in range(1,50,2):
-        numerosImpares.append(numero)
+    for numero in range(1,50,2): #vai gerar números de 1 até 50 na ordem de dois em dois números.
+        numerosImpares.append(numero) #adicionar o número na lista.
         
     print(numerosImpares)
 
@@ -17,29 +17,26 @@ def questão2():
     for numeroInteiro in range(tamanhoDaLista):
         listaNumerosInteiros.append(int(input("insira um número inteiro: "))) # repete o números de vezes até prencher toda a lista
     
-    media = sum(listaNumerosInteiros)/tamanhoDaLista
+    media = sum(listaNumerosInteiros)/tamanhoDaLista #soma a lista e divide pelo números de itens da lista para tirar a média
     print("A média da lista é: {}".format(media))
 
 def questão3():
     valorDaTabuda = int(input("Insira o número da tabuada que deseja: "))
     
-    for numero  in range(1,11):
+    for numero  in range(1,11): # o tamanho da tabuada
         
         print(f'{numero:02}. {numero}x{valorDaTabuda} = {(numero*valorDaTabuda):02}') # o {:02} serve para prencher com zeros a esquerda do número.
 
 def questão4():
     # essa parte serve para verificar se somente número natural vai entrar no input
     # caso não seja número natural, vai ficar repetindo até conseguir um número natural
-    try:
-        valorDeEntrada = int(input("insira um número natural: "))
-    except:
-        valorDeEntrada = 1
-    
-    while valorDeEntrada < 2:
+    rodaWhile = True
+    while rodaWhile:
        try:
-        valorDeEntrada = int(input("Por favor insira um número natural: "))
+        valorDeEntrada = int(input("insira um número natural: "))
+        rodaWhile = False
        except:
-           valorDeEntrada = 1
+            print("Por favor insira um número natural: ")
 
    # essa parte vai calcular um número se é primo ou não 
     listaOrdenada = set() # criamos dois conjuntos pois conjuntos não permite variáveis repetidas. um conjunto de numeros naturais e outros de não primos.
@@ -59,4 +56,3 @@ def questão4():
 
     print("Números primos até o",valorDeEntrada)
     print(listaPrimos)#mostra o conjunto na tela
-
