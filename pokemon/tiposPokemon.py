@@ -23,3 +23,5 @@ teco.lutar(bel)
 bel.lutar(toto)
 toto.lutar(teco)
 
+# def movimentos():
+#     tipo = 
