@@ -1,0 +1,1 @@
+# Criar método para listar pokemons do Jogador

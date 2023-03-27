@@ -1,0 +1,67 @@
+Fonte:
+https://www.heypikachu.com/info-atributos-dos-pokemon
+atributos permanentes (Permanent Stats)
+hp, attack etc
+
+atributos temporários (In Battle Stats)
+evasiva (Evasiveness)
+precisão(Acuracy)
+
+atributos em batalha (in Battle Stats) != condições de status (exemplo: confuso, paralisado, etc)
+
+Natureza:
+    é a personalidade do seu Pokémon onde cada uma influencia postos a mais ou
+a menos nos pontos de atributos
+
+EVs:
+    São os valores de esforço que seu pokémon ganha batalhando com pokémon selvagens até
+chegar a soma dos pontos de EVs para então poder aumentar seus Atributos.
+
+IVs:
+    São os genes (DNA) do seu Pokémon, os famosos pontos ocultos de 0 a 31 que vem de
+nascença e não podem ser mudados.Alguns nascem com genes bons que aumentam muito mais
+seus Atributos/Stats e outros infelizmente nascem com genes ruins que ...
+
+Status:
+    São as condições de estado do seu Pokémon, se ele está confuso, paralisado, dormindo e etc
+
+Fonte:
+https://pt.wikipedia.org/wiki/Jogabilidade_de_Pok%C3%A9mon#:~:text=O%20PP%20(Pontos%20de%20Poder,Pok%C3%A9mon%20pode%20usar%20esse%20movimento.
+
+PP: (Power Points)
+   O PP (Pontos de Poder) de um movimento indica quantas vezes um Pokémon pode usar esse movimento.
+Assim como na precisão, um movimento poderoso geralmente é compensado por ter um número baixo de PP.
+Uma vez que um Pokémon consome todo o PP para um determinado movimento, ele não pode mais usá-lo.
+Se um Pokémon gasta todo o PP em todos os seus movimentos, ele recorre a um movimento chamado 
+Struggle, que danifica o usuário e o alvo. PP esgotado pode ser restaurado usando certos itens
+ou visitando um Centro Pokémon.
+
+movimento pokémon:
+    Todos os movimentos têm um tipo (exemplo, fire, grass), poder (威力 Iryoku?), precisão e vários Pontos de Poder (PP). 
+Os movimentos que um Pokémon pode aprender são diferentes dos outros, dependendo das espécies de Pokémon; mesmo aqueles 
+que evoluem dos outros, não aprendem necessariamente todos os mesmos movimentos que seus antecessores aprendem. Cada 
+Pokémon pode conhecer apenas um total de quatro movimentos por vez. 
+
+fonte:
+https://www.poke-blast-news.net/2013/03/tipo-psychic-psiquico.html
+https://bulbapedia.bulbagarden.net/wiki/Psychic_(move)
+dados do movimento Psychic
+
+fonte:
+https://www.pokemythology.net/conteudo/informacoes/golpes.htm
+lista de movimentos
+
+fonte:
+https://pokemythology.net/conteudo/informacoes/lista_itens.htm
+lista de itens
+
+fonte:
+https://www.pokemothim.net/2014/08/calculo-de-dano.html?m=1
+
+stats modifiers:
+Você deve estar se perguntando sobre Stats Modifiers, como Swords Dance,
+Charm, Calm Mind, etc. Todos esses golpes aumentam ou diminuem stats em
+um certo level, e dependendo do level, o stat que ele modificou irá 
+aumentar (ou diminuir) em uma certa porcentagem. Aqui vai uma relação 
+de quanto o stat muda de acordo com a quantidade de leveis.
+não serve para Accuracy e Evasion.
