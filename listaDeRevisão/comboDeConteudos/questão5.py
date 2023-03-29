@@ -26,19 +26,23 @@ def fibonacci(valorEntrada):
     
     return listaFibonacci
 
-valorEntrada = int(input("quantos termos deseja encontrar: "))
-print(f"os {valorEntrada} primeiros termos da sequência  ")
+valorEntrada = int(input("\nquantos termos deseja encontrar: "))
+print(f"os {valorEntrada} primeiros termos da sequência são:")
+print(fibonacci(valorEntrada))
 while rodarWhile:
-    
-
-    gerarOutroNumero = input("Tecle [S]sim ou [N]não: ")
+    rodarWhile1 = True
+    print("deseja gerar a sequência de Fibonacci para outro número")
+    gerarOutroNumero = (input("Tecle [S]sim ou [N]não: "))
     if gerarOutroNumero in ["s","S","sim","Sim","n","N","não","Não","nao","Nao"]:
         if gerarOutroNumero in ["s","S","sim","Sim"]:
             while rodarWhile1:
-                listaFibonacci.clear()
-                novoTermo = input("Insira a nova quantidade de termos: ")
-                print(listaFibonacci(novoTermo))
-                rodarWhile1 = False
+                try:
+                    listaFibonacci.clear()
+                    novoTermo = int(input("Insira a nova quantidade de termos: "))
+                    print(fibonacci(novoTermo))
+                    rodarWhile1 = False
+                except:
+                    print("comando inválido")
         else:
             print("Obrigado por ter usado a nossa função")
             rodarWhile = False

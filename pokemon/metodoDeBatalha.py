@@ -28,33 +28,32 @@ def calculoDeDano(level,spAttack,atkPower,spDefense,stab,weaknessResistance,crit
 def statsModifiers(atributo,levelModificador):   
     match levelModificador:
         case -6:
-            valor = -6
+            valor = 0.25 # ou 25%
         case -5:
-            valor = -5
+            valor = 0.29 # ou 29%
         case -4:
-            valor = -4
+            valor = 0.33 # ou 33%
         case -3:
-            valor = -3
+            valor = 0.40 # ou 40%
         case -2:
-            valor = -2
+            valor = 0.50 # ou 50%
         case -1:
-            valor = -1
+            valor = 0.66 # ou 66%
         case 0:
-            valor = 0
+            valor = 1    # ou 100%
         case 1:
-            valor = 1
+            valor = 1.5  # ou 150%
         case 2:
-            valor = 2
+            valor = 2    # ou 200%
         case 3:
-            valor = 3
+            valor = 2.5  # ou 250%
         case 4:
-            valor = 4
+            valor = 3    # ou 300%
         case 5:
-            valor = 5
+            valor = 3.5  #  ou 350%
         case 6:
-            valor = 6
+            valor = 4    # ou 400%
+        
+    return atributo * valor
     
-    resultado = atributo * levelModificador
-    return resultado
-
-print(statsModifiers(120,3))
+print(statsModifiers(100,-3))
