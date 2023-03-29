@@ -55,5 +55,40 @@ def statsModifiers(atributo,levelModificador):
             valor = 4    # ou 400%
         
     return atributo * valor
+
+movimentos = # "lista externa{}
+
+def setPp(self):
+    listaDeMovimentos[0,1,2]
     
-print(statsModifiers(100,-3))
+
+
+
+def metodoDebatalha():
+    desafianteHp = self.getHp()
+    oponenteHp = oponente.getHp()
+    
+    if self.getSpeed() > oponente.getSpeed():
+        print(""" escolha uma das opções:
+        [A]attack
+        [S]spMove
+        [D]Item
+        [Z]desistir
+        
+        
+        """)
+        match opcoesDeJogada:
+            case attack:
+               oponenteHp = (
+                calculoDeDano(self.getLevel(), self.getAttack(), self.getAttack(), self.getDefense(), self.getStab(), self.getWeaknessResistance(), self.getCritical(), self.getOther(), self.getMargin()) 
+                - oponenteHp) #atkPower ou Bp no ataque físico irei usar o mesmo ponto de ataque.
+            case spMove: # movimento especial de ataque.
+                #>>> fazer o oponente receber status (poison exemplo.) se tiver.
+                oponenteHp = (
+                calculoDeDano(self.getLevel(), self.getSpAttack(), self.getAtkPower(), self.getDefense(), self.getStab(), self.getWeaknessResistance(), self.getCritical(), self.getOther(), self.getMargin())
+                - oponenteHp ) #atkPower ou Bp no ataque spMove irei usar pontos de poder do movimento.
+                self.setPp()
+            case item:
+                #>>> colocar item no pokémon
+            case desistir:
+                #>>> sair da batalha.

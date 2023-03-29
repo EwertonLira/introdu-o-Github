@@ -36,6 +36,10 @@ Se um Pokémon gasta todo o PP em todos os seus movimentos, ele recorre a um mov
 Struggle, que danifica o usuário e o alvo. PP esgotado pode ser restaurado usando certos itens
 ou visitando um Centro Pokémon.
 
+https://bulbapedia.bulbagarden.net/wiki/PP
+cada movimento tem um limite de pp
+
+
 movimento pokémon:
     Todos os movimentos têm um tipo (exemplo, fire, grass), poder (威力 Iryoku?), precisão e vários Pontos de Poder (PP). 
 Os movimentos que um Pokémon pode aprender são diferentes dos outros, dependendo das espécies de Pokémon; mesmo aqueles 
@@ -68,3 +72,15 @@ não serve para Accuracy e Evasion.
 
 https://pokemongo.fandom.com/pt-br/wiki/Ataques#:~:text=Ataques%20Especiais%20(Special%20Attacks)%20s%C3%A3o,ataques%20r%C3%A1pidos%20(fast%20attacks).
 sobre Ataque Rápido (Fast Attack) e Ataque Especial (Special Attack) e como funcinam.
+
+https://www.pokemythology.net/estatisticas/
+calcualar a chance de acerto e erro.
+
+https://bulbapedia.bulbagarden.net/wiki/Stat#Stat
+ensina a subir de nível, a calcular o level.
+
+https://pokemonbrasil.fandom.com/pt-br/wiki/Bulbasaur_(Pok%C3%A9mon)
+os stats estão explicados detalhadamente.
+
+https://www.poke-blast-news.net/2022/05/priority-moves.html
+prioriade nos movimentos e speed
