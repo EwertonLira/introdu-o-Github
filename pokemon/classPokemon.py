@@ -14,7 +14,7 @@ class Pokemon:
         self._spDefense = spDefense
         self._speed = Speed
         #self.total = sum([self.getHp(),self.getAtk(),self.getDefesa()])
-
+        self._move
     def getHp(self):
         return self._hp
     

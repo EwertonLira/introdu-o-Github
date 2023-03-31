@@ -24,7 +24,6 @@ def calculoDeDano(level,spAttack,atkPower,spDefense,stab,weaknessResistance,crit
     dano = ((((2*level/5+2)*spAttack*atkPower/spDefense)/50)+2)*stab*weaknessResistance*critical*other*(margin/100)
     return dano
 
-
 def statsModifiers(atributo,levelModificador):   
     match levelModificador:
         case -6:
@@ -56,10 +55,33 @@ def statsModifiers(atributo,levelModificador):
         
     return atributo * valor
 
-movimentos = # "lista externa{}
+def menuDeMeuMovimento(): #função precisa importar  limparTela() e sleep() e retorna um número da opção, usa lista.
+    rodarWhile = True
+    while rodarWhile:
+        print("Escolha o movimento do  seu pokemon")
+        for numeroDaLista, MoveDaLista in enumerate(self.getMove(),1):
+            print(f"[{numeroDaLista}] {MoveDaLista}")
+        
+        print("[0] voltar")
+        opcaoDeMove = input(": ")
+        if opcaoDeMove in ["0"]:
+            valorRetorno = False
+            rodarWhile = False
+        elif opcaoDeMove in ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"]:
+            valorRetorno = int(opcaoDeMove)
+            rodarWhile = False
+        else:
+            print("opção invalida")
+            sleep(1) 
+            limparTela()
+    
+    return valorRetorno
 
-def setPp(self):
-    listaDeMovimentos[0,1,2]
+
+
+def getMove(self):
+    return self.Move() # movimentos listas
+    
     
 
 
@@ -67,23 +89,34 @@ def setPp(self):
 def metodoDebatalha():
     desafianteHp = self.getHp()
     oponenteHp = oponente.getHp()
-    
+    #posso colocar todos os atributos aqui.
+    desafianteHp = self.getHp()
+    oponenteHp = oponente.getHp()
+
+
+
     if self.getSpeed() > oponente.getSpeed():
+        print("desafiante começa")
         print(""" escolha uma das opções:
         [A]attack
         [S]spMove
         [D]Item
         [Z]desistir
-        
-        
         """)
         match opcoesDeJogada:
             case attack:
                oponenteHp = (
                 calculoDeDano(self.getLevel(), self.getAttack(), self.getAttack(), self.getDefense(), self.getStab(), self.getWeaknessResistance(), self.getCritical(), self.getOther(), self.getMargin()) 
                 - oponenteHp) #atkPower ou Bp no ataque físico irei usar o mesmo ponto de ataque.
+            
             case spMove: # movimento especial de ataque.
+                    menuDeMeuMovimento()
+
+                
                 #>>> fazer o oponente receber status (poison exemplo.) se tiver.
+                
+                
+                
                 oponenteHp = (
                 calculoDeDano(self.getLevel(), self.getSpAttack(), self.getAtkPower(), self.getDefense(), self.getStab(), self.getWeaknessResistance(), self.getCritical(), self.getOther(), self.getMargin())
                 - oponenteHp ) #atkPower ou Bp no ataque spMove irei usar pontos de poder do movimento.
@@ -92,3 +125,4 @@ def metodoDebatalha():
                 #>>> colocar item no pokémon
             case desistir:
                 #>>> sair da batalha.
+
