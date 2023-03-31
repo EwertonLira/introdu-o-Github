@@ -1,4 +1,5 @@
-"1","Pound","Nenhum","40","100","35","normal"
+"indice","golpe","efeito Especial","poder","acertividade","pp"
+"1","Pound","Nenhum","40","100","35"
 "2","Karate Chop","Tem grandes chances de causar um Critical Hit","50","100","25"
 "3","Doubleslap","Ataca de 2 a 5 vezes numa rodada","15","85","10"
 "4","Comet Punch","Ataca de 2 a 5 vezes numa rodada","18","85","15"

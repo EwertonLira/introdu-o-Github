@@ -1,24 +1,5 @@
-# from os import system, name 
-# from time import sleep 
-# def limparTela(): 
-    
-#     if name == 'nt': 
-#         _ = system('cls') 
-      
-#     else: 
-#         _ = system('clear') 
-
-# print("kjsaljdjsjlkfj")
-
-# input("kdjds")
-# sleep(0.65) 
-# limparTela()
-
 import csv
+with open('pokemon/movePoke.csv', newline='') as csvfile:
+    reader = csvfile.read(csvfile)
 
-arquivo = open('movePoke.csv')
-
-pessoas = csv.reader(arquivo)
-
-for pessoa in pessoas:
-    print(pessoa)
+print(reader)

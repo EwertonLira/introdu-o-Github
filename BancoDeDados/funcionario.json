@@ -1,0 +1,44 @@
+[
+  {
+    "nome": "Paulo",
+    "cpf": "777777",
+    "salario": 1500.0,
+    "cargo": "professor",
+    "departamento": "administrativo"
+  },
+  {
+    "nome": "Rogerinho",
+    "cpf": "Negativado",
+    "salario": 1230,
+    "cargo": "Piloto",
+    "departamento": "Entregas"
+  },
+  {
+    "nome": "Tarik Ponciano",
+    "cpf": "123131231",
+    "salario": 9999999.0,
+    "cargo": "Instrutor",
+    "departamento": "Senac"
+  },
+  {
+    "nome": "lucas",
+    "cpf": "13112314",
+    "salario": 5000,
+    "cargo": "gerente",
+    "departamento": "produ\u00c3\u00a7\u00c3\u00a3o"
+  },
+  {
+    "nome": "pedro",
+    "cpf": "5646",
+    "salario": 5000.0,
+    "cargo": "gerente",
+    "departamento": "comercial"
+  },
+  {
+    "nome": "matias",
+    "cpf": "46545",
+    "salario": 4000.0,
+    "cargo": "pescador",
+    "departamento": "pesca"
+  }
+]
