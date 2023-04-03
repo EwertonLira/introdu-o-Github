@@ -1,3 +1,5 @@
+Pesquisa para o jogo pokemon
+
 Fonte:
 https://www.heypikachu.com/info-atributos-dos-pokemon
 atributos permanentes (Permanent Stats)
@@ -84,3 +86,6 @@ os stats estão explicados detalhadamente.
 
 https://www.poke-blast-news.net/2022/05/priority-moves.html
 prioriade nos movimentos e speed
+
+https://pokemondb.net/move/all
+sobre movimentos pokemon
