@@ -1,7 +1,56 @@
 from classPokemon import *
 from funcoes import *
 
-class SubClassePokemon(Pokemon): #modelar pelo menos 3 subclasses de pokemom com base no seu tipo (não feito)
+class PokemonEletrico(Pokemon): #modelar pelo menos 3 subclasses de pokemom com base no seu tipo (feito)
+    def __init__(self, nome, tipo, hp, level):
+        super().__init__(nome, tipo, hp, level)
+    
+    def checarVantagem(self, pokemonInimigo):
+        if self._tipo == 'Elétrico':
+            if pokemonInimigo._tipo == 'Elétrico':
+                pokemonInimigo._hp -= 10
+            elif pokemonInimigo._tipo == 'Normal':
+                pokemonInimigo._hp -= 15
+            elif pokemonInimigo._tipo == 'Água':
+                pokemonInimigo._hp -= 15
+            else:
+                pokemonInimigo._hp -= 10
+
+class PokemonFogo(Pokemon):
+    def __init__(self, nome, tipo, hp, level):
+        super().__init__(nome, tipo, hp, level)
+
+    def checarVantagem(self, pokemonInimigo):
+        if self._tipo == 'Fogo':
+            if pokemonInimigo._tipo == 'Fogo':
+                pokemonInimigo._hp -= 10
+            elif pokemonInimigo._tipo == 'Normal':
+                pokemonInimigo._hp -= 15
+            elif pokemonInimigo._tipo == 'Água':
+                pokemonInimigo._hp -= 5
+            elif pokemonInimigo._tipo == 'Grama':
+                pokemonInimigo._hp -= 15
+            else:
+                pokemonInimigo._hp -= 10
+
+class PokemonAgua(Pokemon):
+    def __init__(self, nome, tipo, hp, level):
+        super().__init__(nome, tipo, hp, level)
+
+    def checarVantagem(self, pokemonInimigo):
+        if self._tipo == 'Água':
+            if pokemonInimigo._tipo == 'Água':
+                pokemonInimigo._hp -= 10
+            elif pokemonInimigo._tipo == 'Normal':
+                pokemonInimigo._hp -= 15
+            elif pokemonInimigo._tipo == 'Terrestre':
+                pokemonInimigo._hp -= 15
+            elif pokemonInimigo._tipo == 'Fogo':
+                pokemonInimigo._hp -= 15
+            else:
+                pokemonInimigo._hp -= 10
+
+class SubClassePokemon(Pokemon): 
     def __init__(self, apelido, name, hp, attack, defense, spAttack, spDefense, Speed, type1, type2):
         super().__init__(apelido, name, hp, attack, defense, spAttack, spDefense, Speed, type1, type2)
 
@@ -74,7 +123,6 @@ class SubClassePokemon(Pokemon): #modelar pelo menos 3 subclasses de pokemom com
             indice = self.verificarVencendor(desafianteHp,oponenteHp,pokeOponente,usuario,opName)
             if indice:
                 break
-
             # quem tiver o maior speed começa a batalha
            
             if self.getSpeed() > pokeOponente.getSpeed():
