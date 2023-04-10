@@ -1,0 +1,47 @@
+a)Cadastro de produtos; (Papelaria)
+
+código de barras(integer) (pk)
+cor(char)
+peso(integer)
+dimensão(integer)
+Quantidade(integer)
+fornecedor(char)
+data de fabricação (date)
+validade (date)	
+data compra (date)
+data de venda (date)
+
+b)Cadastro de funcionário; (Escola)
+
+matrícula(integer) (pk)
+nome(char)
+idade(integer)
+sexo(char)
+rua (char)
+bairro (char)
+cep (integer)
+telefone(integer)
+cargo(char)
+setor(char)
+turno(char)
+
+
+c) Cadastro de fornecedores (Tecido)
+
+cnpj da empresa(integer) (PK)
+nome da empresa(char)
+endereço(char)
+cep(integer)
+telefone(integer)
+email(char)
+serviço(char)
+
+d)Cadastro de departamentos; (Empresa)
+
+Id (integer) (pk)
+Nome do departamento(char)
+função(char)
+local(char)
+turno(char)
+
+
