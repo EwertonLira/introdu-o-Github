@@ -1,0 +1,13 @@
+{
+    "departamento": [
+        {
+        "dep_id":10,
+        "dep_nome":"Tecnologia da informação",
+        "dep_atribuição":"gerenciar as informações em uma organização,criando e distribuindo-as em redes de computadores"
+    },
+    {
+        "dep_id":20,
+        "dep_nome":"Vendas",
+        "dep_atribuição":"vender os produtos da loja"
+    }
+]}

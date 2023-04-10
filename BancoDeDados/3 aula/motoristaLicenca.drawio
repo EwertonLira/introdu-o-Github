@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2023-04-10T17:37:41.092Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="mLEUtbnXY4vXdetCkbT3" version="21.1.4" type="device">
+  <diagram name="Página-1" id="ZNGdyTW8wr7JX23fp848">
+    <mxGraphModel dx="954" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="T8BnpZqXo7NzLkKu8uot-1" target="qy5Mjo_JiA9BRrlOU21e-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="T8BnpZqXo7NzLkKu8uot-1" value="#mot_id : integer (pk)&lt;br&gt;mot_nome : char(20)&lt;br&gt;mot_sobrenome : char(20)&lt;br&gt;&lt;div style=&quot;&quot;&gt;mot_rg :char(20)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_cpf : char(11)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_foto: jpeg (200kb)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_idade : integer(3)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_sexo : char(3)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_escolaridade : char(30)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_carteira_A : char(1) (fk)&lt;/div&gt;&lt;div style=&quot;&quot;&gt;mot_carteira_B : char(1) (fk)&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="100" y="70" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-3" value="motorista" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="40" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-5" value="#lic_numero : integer(10) (pk)&lt;br&gt;#mot_id : integer (fk)&lt;br&gt;lic_observações: char(500)&lt;br&gt;lic_categoria A: char(1)&lt;br&gt;ic_categoria B: char(1)&lt;br&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="530" y="70" width="170" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-6" value="licença" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="40" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-14" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qy5Mjo_JiA9BRrlOU21e-7" target="qy5Mjo_JiA9BRrlOU21e-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-7" value="Renova" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="115" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-15" value="N" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="460" y="115" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qy5Mjo_JiA9BRrlOU21e-16" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="115" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
