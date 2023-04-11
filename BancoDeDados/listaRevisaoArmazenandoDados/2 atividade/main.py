@@ -1,6 +1,6 @@
-from os import system 
+from os import system
 import json
-caminho = "listaRevisaoArmazenandoDados/2 atividade/saldo.json"
+caminho = "2 atividade/saldo.json"
 
 class Banco():
     def __init__(self,saldo=None):
@@ -82,7 +82,7 @@ while True:
                 valor = float(input("Digite o valor do depósito: "))
                 deuCerto = user.setDepositar(valor)
                 if deuCerto:
-                    print(f"foi depositado o valor de {valor:.2f} da sua conta")
+                    print(f"foi depositado o valor de {valor:.2f} na sua conta")
                     salvarSaldoNoJson(user.getSaldo())
             except:
                 print("somente números. Tente novamente")
@@ -106,4 +106,3 @@ while True:
     # fim de qualquer opção do menu
     input("Pressione Enter para continuar")
     system("cls")
-
