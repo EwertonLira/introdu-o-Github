@@ -32,14 +32,24 @@ def abrirTxt():
     return contaTxtLidos
 
 carla = Conta("Carla",300)
-joão = Conta("João",700)
+joão = Conta("João",100)
 miguel = Conta("Miguel",950)
 andre = Conta("Andre", 600)
 rafael = Conta("Rafael",900)
 
+# vai retornar a maior conta como um objeto
 listaDeContas = [carla,joão,andre,miguel,rafael]
-salvarTxt(listaDeContas)
-valorAbertoTxt = abrirTxt()
-print(valorAbertoTxt)
 objResutado = maiorConta(listaDeContas)
-print(f"O maior saldo é de {objResutado.getTitular()} com o valor de R$ {objResutado.getSaldo()}")
+
+# com o objeto com o maior saldo. pegamos o saldo do objeto e convertemos para texto
+valorTexto = objResutado.getSaldo()
+valorTexto = str(valorTexto)
+
+# salvamos o texto no arquivo txt
+salvarTxt(valorTexto)
+
+# abrimos o arquivo de texto Txt
+valorAbertoTxt = abrirTxt()
+
+# printamos o nome do objeto e o valor guardado no arquivo txt.
+print(f"O maior saldo é de {objResutado.getTitular()} com o valor de R$ {valorAbertoTxt}")
