@@ -1,15 +1,15 @@
 {
     "funcionário":[
-        {"fun_id": "01","fun_nome": "Azevedo","fun_salário":3200,"fun_idade":45,"dep_id":10},
-        {"fun_id": "02","fun_nome": "Geraldo","fun_salário":2500,"fun_idade":35,"dep_id":20},
-        {"fun_id": "03","fun_nome": "Antônio","fun_salário":1200,"fun_idade":25,"dep_id":20},
-        {"fun_id": "04","fun_nome": "Pedro","fun_salário":1500,"fun_idade":26,"dep_id":20},
-        {"fun_id": "05","fun_nome": "Paulo","fun_salário":1200,"fun_idade":28,"dep_id":10},
-        {"fun_id": "06","fun_nome": "Tenório","fun_salário":1200,"fun_idade":29,"dep_id":10},
-        {"fun_id": "07","fun_nome": "Tereza","fun_salário":1200,"fun_idade":33,"dep_id":20},
-        {"fun_id": "08","fun_nome": "Maria","fun_salário":1800,"fun_idade":33,"dep_id":20},
-        {"fun_id": "09","fun_nome": "Margarida","fun_salário":1200,"fun_idade":22,"dep_id":20},
-        {"fun_id": "10","fun_nome": "Madalena","fun_salário":1200,"fun_idade":22,"dep_id":10}
+        {"fun_id": 1,"fun_nome": "Azevedo","fun_salário":3200,"fun_idade":45,"dep_id":10},
+        {"fun_id": 2,"fun_nome": "Geraldo","fun_salário":2500,"fun_idade":35,"dep_id":20},
+        {"fun_id": 3,"fun_nome": "Antônio","fun_salário":1200,"fun_idade":25,"dep_id":20},
+        {"fun_id": 4,"fun_nome": "Pedro","fun_salário":1500,"fun_idade":26,"dep_id":20},
+        {"fun_id": 5,"fun_nome": "Paulo","fun_salário":1200,"fun_idade":28,"dep_id":10},
+        {"fun_id": 6,"fun_nome": "Tenório","fun_salário":1200,"fun_idade":29,"dep_id":10},
+        {"fun_id": 7,"fun_nome": "Tereza","fun_salário":1200,"fun_idade":33,"dep_id":20},
+        {"fun_id": 8,"fun_nome": "Maria","fun_salário":1800,"fun_idade":33,"dep_id":20},
+        {"fun_id": 9,"fun_nome": "Margarida","fun_salário":1200,"fun_idade":22,"dep_id":20},
+        {"fun_id": 10,"fun_nome": "Madalena","fun_salário":1200,"fun_idade":22,"dep_id":10}
     ]
 
 }

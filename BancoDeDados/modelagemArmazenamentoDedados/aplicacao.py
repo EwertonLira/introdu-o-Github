@@ -12,15 +12,14 @@ def menuDeopções():
     # menu onde aparece o texto e o comando de entrada de dados
     while True:
         print(f""" 
-        Sistema de gerenciamento da Empresa 
-                        ABC 
-                    
-        [1] Listar Funcionários
-        [2] Listar Departamentos
-        [3] Informações do Funcionário
-        [4] Informações do Departamento
-        [0] Sair
-        
+Software de gerenciamento da Empresa 
+                ABC 
+            
+[1] Listar Funcionários
+[2] Listar Departamentos
+[3] Informações do Funcionário
+[4] Informações do Departamento
+[0] Sair
         """)
         try:
             opcao = int(input(": "))
@@ -71,8 +70,8 @@ def mostrarListaDepartamento(bancoDeDadosJson):
     print("\nDepartamentos ativos")
     for elemento in bancoDeDadosJson[["departamento"][0]]:
         print(f"""
-        ID do departamento: {elemento["id_departamento"]}
-        ID do cargo: {elemento["id_cargo"]}""")
+ID do departamento: {elemento["id_departamento"]}
+ID do cargo: {elemento["id_cargo"]}""")
 
 def mostrarInformaçõesFuncionários(bancoDeDadosJson):
     # procurar o nome no banco de dados do json
@@ -92,10 +91,10 @@ def mostrarInformaçõesFuncionários(bancoDeDadosJson):
             
             if nome == valorDeEntrada or id == valorDeEntrada:
                 print(f"""
-                ID: {funcionario["id_funcionario"]}
-                Nome: {funcionario["id_nome"]}
-                CPF: {funcionario["id_cpf"]}
-                Departamento: {funcionario["id_departamento"]}""")
+ID: {funcionario["id_funcionario"]}
+Nome: {funcionario["id_nome"]}
+CPF: {funcionario["id_cpf"]}
+Departamento: {funcionario["id_departamento"]}""")
                 naoEncontrado = False
         
         if naoEncontrado:
@@ -121,9 +120,9 @@ def mostrarinformaçõesDepartamento(bancoDeDadosJson):
             
             if cargo == valorDeEntrada or id == valorDeEntrada:
                 print(f"""
-                Dados do departamento:
-                ID: {departamento["id_departamento"]}
-                cargo: {departamento["id_cargo"]}""")
+Dados do departamento:
+ID: {departamento["id_departamento"]}
+cargo: {departamento["id_cargo"]}""")
                 naoEncontrado = False
 
                 print("lista de funcionários do Departamento")
@@ -140,8 +139,8 @@ def mostrarinformaçõesDepartamento(bancoDeDadosJson):
 
 def saidaDoMenu():
     print("""Você tem certeza que deseja sair?
-    tecle [S] para sim
-    tecle [N] para não
+tecle [S] para sim
+tecle [N] para não
     """)
     opcao = input(": ")
     system("cls")
