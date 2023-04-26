@@ -1,7 +1,11 @@
 # menu da aplicação
-from model.main import *
+from main import *
 
-
+def opçãoE():
+    print("Por favor insira o nome do Cliente")
+    cliente = input(": ")
+    
+    return cliente
 
 def opçãoSair():
     print("Saindo do programa...")
@@ -27,7 +31,7 @@ a letra correspondente e aperte [ENTER]
 
         match op:
             case "e" | "E":
-                print()
+                opçãoE()
                 inserirCliente()
             case "s" | "S":
                 pass

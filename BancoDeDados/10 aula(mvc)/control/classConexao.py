@@ -1,6 +1,6 @@
 import psycopg2
 
-class conexao:
+class Conexao:
     def __init__(self, dbname, host, port, user, password) -> None:
         
         self._dbname = dbname
