@@ -36,7 +36,7 @@ def verFuncionarioEspecifico(id):
     cursor.execute(f'''
     Select * from "Funcionário"
     WHERE "Id" = '{id}'
-    ''')
+    ''')    
 
     funcionario = cursor.fetchone()
 
@@ -173,6 +173,10 @@ def deletarFuncionarios():
         id = '{opcao}'    
     ''')
 
+def pesquisarFuncionario():
+
+    pass
+
 def opçãoSair():
     print("Saindo do programa...")
     cursor.close()
@@ -208,7 +212,9 @@ a letra correspondente e aperte [ENTER]
             case "f" | "F":
                 inserirFuncionario()
             case "e" | "E":
-                pass
+                deletarFuncionarios()
+            case "q" | "Q":
+                pesquisarFuncionario()
             case "z" | "Z":
                 opçãoSair()
                 break
