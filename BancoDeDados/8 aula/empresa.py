@@ -64,7 +64,7 @@ def verDepartamentoEspecifico(id):
     else:
         print("Departamento não encontrado.")
 
-def verFuncionarios(cursor):
+def verFuncionarios():
 
     cursor.execute('''
                 SELECT * FROM "Funcionário"
@@ -73,32 +73,38 @@ def verFuncionarios(cursor):
 
     listaFuncionarios = cursor.fetchall()
     print("ID - Nome")
+    verificarId = []
     for funcionario in listaFuncionarios:
         print(f"{funcionario[0]} - {funcionario[1]}")
+        verificarId.append(str(funcionario[0]))
 
     idEscolhido = input("Digite o id de um funcionário que deseja ver mais informações:(0 = Voltar) ")
 
-    if idEscolhido != "0":
+    if idEscolhido in verificarId:
         verFuncionarioEspecifico(idEscolhido)
+        verificarId.clear()
     else:
         print("Voltando para o menu principal.")
 
 def verDepartamentos():
 
     cursor.execute('''
-                SELECT * FROM "Departamentos"
+                SELECT * FROM "Departamento"
                 ORDER BY "Id" ASC
                 ''')
 
     listaDepartamentos = cursor.fetchall()
     print("ID - Nome")
+    verificarId = []
     for departamento in listaDepartamentos:
         print(f"{departamento[0]} - {departamento[1]}")
+        verificarId.append(str(departamento[0]))
 
     idEscolhido = input("Digite o id de um departamento que deseja ver mais informações:(0 = Voltar) ")
 
-    if idEscolhido != "0":
+    if idEscolhido in verificarId:
         verDepartamentoEspecifico(idEscolhido)
+        verificarId.clear()
     else:
         print("Voltando para o menu principal.")
 
@@ -127,7 +133,7 @@ def inserirDepartamento():
 
 
     cursor.execute(f'''
-    INSERT INTO "Departamentos"
+    INSERT INTO "Departamento"
     Values(default, '{novoDepartamentoNome}')
     
     ''')
@@ -136,18 +142,13 @@ def inserirDepartamento():
 
     print("Departamento Inserido!")
 
-def deletarFuncionarios():
-    cursor.execute(f'''
-    
-    
-    ''')
 
 def opçãoSair():
     print("Saindo do programa...")
     cursor.close()
     conn.close()
 
-def menu(cursor,conn):
+def menu():
     # menu da aplicação
 
     while True:
@@ -167,15 +168,13 @@ a letra correspondente e aperte [ENTER]
 
         match op:
             case "a" | "A":
-                verFuncionarios(cursor)
+                verFuncionarios()
             case "s" | "S":
                 verDepartamentos()
             case "d" | "D":
                 inserirDepartamento()
             case "f" | "F":
                 inserirFuncionario()
-            case "e" | "E":
-                pass
             case "z" | "Z":
                 opçãoSair()
                 break
@@ -185,7 +184,7 @@ a letra correspondente e aperte [ENTER]
         input("Tecle enter para continuar.")
 
 try:
-    conn = psycopg2.connect(dbname="Empresa xyz", host="localhost",port="5432",user="postgres",password="postgre")
+    conn = psycopg2.connect(dbname="Empresa xyz", host="localhost",port="5432",user="postgres",password="postgres")
     cursor = conn.cursor()
 
     # cursor.execute(criarEntidadeFuncionário()) # tabela do banco de dados já criada
@@ -199,7 +198,7 @@ try:
     # cursor.close()
     # conn.close()
 
-    menu(cursor,conn)
+    menu()
 
 except(Exception, psycopg2.Error) as error:
     print("Ocorreu um erro ao tentar a conexão", error)

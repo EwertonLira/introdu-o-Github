@@ -1,8 +1,9 @@
 import json
 
+
 def pegarListaAtualizada():
 
-    with open("funcionario.json", 'r') as funcionariosJson:
+    with open("1 aula/funcionario.json", 'r') as funcionariosJson:
         lista = json.load(funcionariosJson)
 
     return lista
@@ -35,10 +36,10 @@ def inserirFuncionario():
     print("Inserir Novo Funcionário:")
 
     nomeFuncionario = input("Insira o nome do Funcionário: ")
-    cpfFuncionario = input("Insira o cpf do Funcionario:")
-    salarioFuncionario = input("Insira o salario do Funcionario:")
-    cargoFuncionario = input("Insira o cargo do Funcionario:")
-    departamentoFuncionario = input("Insira o departamento do Funcionario:")
+    cpfFuncionario = input("Insira o cpf do Funcionario: ")
+    salarioFuncionario = input("Insira o salario do Funcionario: ")
+    cargoFuncionario = input("Insira o cargo do Funcionario: ")
+    departamentoFuncionario = input("Insira o departamento do Funcionario: ")
 
     funcionario["nome"] = nomeFuncionario
     funcionario["cpf"] = cpfFuncionario
@@ -49,7 +50,7 @@ def inserirFuncionario():
     listaFuncionarios = pegarListaAtualizada()
     listaFuncionarios.append(funcionario)
 
-    with open("funcionario.json", 'w') as funcionariosJson:
+    with open("1 aula/funcionario.json", 'w') as funcionariosJson:
         json.dump(listaFuncionarios, funcionariosJson, indent=2)
 
 def removerFuncionario():
@@ -68,7 +69,7 @@ def removerFuncionario():
     
     listaFuncionarios = pegarListaAtualizada()
     listaFuncionarios.pop(item)
-    with open("funcionario.json", 'w') as funcionariosJson:
+    with open("1 aula/funcionario.json", 'w') as funcionariosJson:
         json.dump(listaFuncionarios, funcionariosJson, indent=2)
 
 def atualizarFuncionario():
@@ -109,7 +110,7 @@ def atualizarFuncionario():
     listaFuncionarios.pop(item)
     listaFuncionarios.insert(item,funcionario)
 
-    with open("funcionario.json", 'w') as funcionariosJson:
+    with open("1 aula/funcionario.json", 'w') as funcionariosJson:
         json.dump(listaFuncionarios, funcionariosJson, indent=2)
 
 while True:

@@ -45,7 +45,7 @@ def verFuncionarioEspecifico(id):
         ID: {funcionario[0]}
         Nome: {funcionario[1]}
         CPF : {funcionario[2]}
-        Salário: R$ {funcionario[3]}
+        Salário: {funcionario[3]}
         Cargo: {funcionario[4]}
         Departamento: {funcionario[5]}
         ''')
@@ -74,27 +74,26 @@ def verDepartamentoEspecifico(id):
 def verFuncionarios():
 
     cursor.execute('''
-                SELECT * FROM "Funcionário"
-                ORDER BY "Id" ASC
-                ''')
+    SELECT * FROM "Funcionário"
+    ORDER BY "Id" ASC
+    ''')
 
     listaFuncionarios = cursor.fetchall()
+    idparaVerificação = []
     print("ID - Nome")
     for funcionario in listaFuncionarios:
         print(f"{funcionario[0]} - {funcionario[1]}")
+        idparaVerificação.append(str(funcionario[0]))
 
     idEscolhido = input(f'''
 Digite o id de um funcionário que deseja ver mais informações
 : ''')
-
-    try:
-        int(idEscolhido)
-        if idEscolhido != "0" or " " or "sair":
-            verFuncionarioEspecifico(idEscolhido)
-        else:
-            print("Voltando para o menu principal.")
-    except:
-        print("comando inválido")
+    if idEscolhido in idparaVerificação:
+        # int(idEscolhido)
+        verFuncionarioEspecifico(idEscolhido)
+        idparaVerificação.clear()
+    else:
+        print("Voltando para o menu principal.")
 
 def verDepartamentos():
 
@@ -104,16 +103,19 @@ def verDepartamentos():
                 ''')
 
     listaDepartamentos = cursor.fetchall()
+    idVerificação = []
     print("ID - Nome")
     for departamento in listaDepartamentos:
         print(f"{departamento[0]} - {departamento[1]}")
-
+        idVerificação.append(str(departamento[0]))
+    
     idEscolhido = input(f'''
 escolha o id do departamento para ver mais detalhes.
 : ''')
 
-    if idEscolhido != "0":
+    if idEscolhido in idVerificação:
         verDepartamentoEspecifico(idEscolhido)
+        idVerificação.clear()
     else:
         print("Voltando para o menu principal.")
 
@@ -161,21 +163,41 @@ def deletarFuncionarios():
 
     listaFuncionarios = cursor.fetchall()
     print("ID - Nome")
+    VerificarID = []
     for funcionario in listaFuncionarios:
         print(f"{funcionario[0]} - {funcionario[1]}")
+        VerificarID.append(funcionario[0])
 
     opcao = input(": ")
-    
-    cursor.execute(f'''
-    DELETE FROM
-        Funcionário
-        WHERE
-        id = '{opcao}'    
-    ''')
+    if int(opcao) in VerificarID:
+        cursor.execute(f'''
+        DELETE 
+            FROM "Funcionário"
+            WHERE
+            "Id" = '{opcao}'    
+        ''')
+    else:
+        print("comando inválido")
+    conn.commit()
 
 def pesquisarFuncionario():
+    print("digite o nome do funcionário ou id")
+    valorPesquisado = input(": ")
+    cursor.execute('''
+    SELECT * FROM "Funcionário"
+    ORDER BY "Id" ASC
+    ''')
 
-    pass
+    listaFuncionarios = cursor.fetchall()
+ 
+    for funcionario in listaFuncionarios:
+        if valorPesquisado == str(funcionario[0]) or valorPesquisado.lower() == funcionario[1].lower():
+            verFuncionarioEspecifico(funcionario[0])
+
+    else:
+        print("Nenhum resultado encontrado.")
+    
+    
 
 def opçãoSair():
     print("Saindo do programa...")
@@ -226,9 +248,10 @@ a letra correspondente e aperte [ENTER]
 # -------------início do programa-------------
 
 try:
-    conn = psycopg2.connect(dbname="empresaGota", host="localhost",port="5432",user="postgres",password="postgre")
+    conn = psycopg2.connect(dbname="empresaGota", host="localhost",port="5432",user="postgres",password="postgres")
     cursor = conn.cursor()
 
+    # tabelas já criadas a parte do programa vai ficar comentada para não rodar de novo
     # cursor.execute(criarEntidadeDepartamento())
     # conn.commit()
 

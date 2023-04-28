@@ -1,76 +1,138 @@
-from control.classConexao import *
+from control.classConexao import Conexao
+from model.classCliente import Cliente
+from model.classCompra import Compra
+from model.classProduto import Produto
 
-lojaBanco = Conexao("loja","localhost","5432","postgres","postgre") # conexão criada
+#Cenário: Biblioteca
 
-# tabela cliente
-lojaBanco.manipularBanco('''
+# Construir um sistema de cadastro de aluguéis de livros.
+
+# - Deve conter um banco com as seguintes tabelas: Clientes, Aluguéis e Livros
+# - Deve conter as seguintes funcionalidades: Cadastro de Clientes, Cadastro de Aluguéis, Cadastro de Livros e Visualização dos dados das 3 tabelas.
+
+#Requisitos:
+#   - Deve utilizar chave estrangeira
+
+
+import psycopg2
+
+conexaoBanco = Conexao("Loja", "localhost", "5432", "postgres", "postgres")
+
+def criarTabelas():
+
+    conexaoBanco.manipularBanco('''
+    CREATE TABLE "Clientes"(
+    "Id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "Nome" varchar(255) NOT NULL
+    )
     
-    CREATE TABLE "Cliente" (
-    "Id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "Nome" VARCHAR(255) NOT NULL,
-    );
+    ''')
 
-''')
-
-# tabela Produto
-lojaBanco.manipularBanco(''' 
+    conexaoBanco.manipularBanco('''
+    CREATE TABLE "Produtos"(
+    "Id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "Nome" varchar(255) NOT NULL,
+    "Preço" numeric(2) NOT NULL default 0,
+    "Estoque" int NOT NULL default 0
+    )
     
-    CREATE TABLE "Produto" (
-    "Id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "Nome produto" VARCHAR(255) NOT NULL,
-    "Preço Produto" NUMERIC(2) NOT NULL,
-    "Estoque Produto" INT NOT NULL DEFAULT 0,
+    ''')
 
-    );
-''')
-
-# tabela Compra
-lojaBanco.manipularBanco(''' 
+    conexaoBanco.manipularBanco('''
+    CREATE TABLE "Compras"(
+    "Id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "Id_Cliente" int,
+    "Id_Produto" int,
+    "Quantidade" int NOT NULL default 1,
+    "Valor Total" numeric(2) NOT NULL,
+    "Horário" timestamp default CURRENT_TIMESTAMP(0),
+    CONSTRAINT fk_cliente
+        FOREIGN KEY("Id_Cliente")
+        REFERENCES "Clientes"("Id")
+        ,
+    CONSTRAINT fk_produto
+        FOREIGN KEY("Id_Produto")
+        REFERENCES "Produtos"("Id")
+    )
     
-    CREATE TABLE "Compra" (
-    "Id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "Id_Cliente" INT NOT NULL,
-    "Id_Produto" INT NOT NULL,
-    "Quantidade" INT NOT NULL,
-    "Valor Total" NUMERIC(2) NOT NULL,
-    "TimesTamp" TIMESTAMP DEFAULT CURRENT_TIMESTAMP(0),
+    
+    ''')
+
+    print("Tabelas cadastradas!")
+
+def cadastrarCliente():
+    print("Cadastro de Cliente")
+
+    cliente = Cliente(None, input("Digite o nome do cliente: "))
+
+    conexaoBanco.manipularBanco(cliente.sqlInserirCliente())
+
+    print("Cliente Cadastrado")
+
+def cadastrarProduto():
+    print("Cadastro de Produto")
+
+    novoProduto = Produto(None, input("Digite o nome do produto: "),input("Digite o preço do produto:"), input("Digite o estoque do produto:"))
+
+    conexaoBanco.manipularBanco(novoProduto.sqlInserirProduto())
+
+    print("Produto Cadastrado")
+
+def cadastrarCompra():
+    print("Cadastro de Compra")
+
+    novaCompra = Compra(None, input("Digite o id do Cliente:"), input("Digite o id do Produto:"), input("Digite quantos produtos serão comprados:"), None, None)
+
+    produtoEscolhido = conexaoBanco.consultarBanco(f'''
+    SELECT * FROM "Produtos"
+    WHERE "Id" = {novaCompra._idProduto}
+    ''')[0]
+
+    produto = Produto(produtoEscolhido[0], produtoEscolhido[1], produtoEscolhido[2], produtoEscolhido[3])
+
+    if int(produto._estoque) < int(novaCompra._quantidade):
+        print("Não há estoque suficiente.")
+        return "Não há estoque suficiente."
+    else: 
+        produto._estoque = int(produto._estoque) - int(novaCompra._quantidade)
+
+    novaCompra._valorTotal = float(produto._preço) * float(novaCompra._quantidade)
+
+    conexaoBanco.manipularBanco(novaCompra.sqlInserirCompra())
+
+    conexaoBanco.manipularBanco(produto.sqlAtualizarProduto())
+
+    print(f"Compra de {novaCompra._quantidade} {produto._nome} por R$ {novaCompra._valorTotal} foi cadastrada")
+
+
+while True:
+    try:
+        print('''Bem vindo a Loja FICTÍCIA: Onde tudo é de mentira
         
-        CONSTRAINT fk_Cliente
-            FOREIGN KEY("Id_Cliente")
-            REFERENCES "Produto"("Id")
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-            ,
+        Menu:
+            1. Cadastrar Cliente
+            2. Cadastrar Produto
+            3. Cadastrar Compra
+            0. Sair
+        
+        
+        ''')    
+        op = input("Digite uma das opções:")
+        
+        match op:
+            case "1":
+                cadastrarCliente()
+            case "2":
+                cadastrarProduto()
+            case "3":
+                cadastrarCompra()
+            case "0":
+                print("Saindo...")
+                break
+            case _:
+                print("Opção inválida!")
 
-        CONSTRAINT fk_produto
-            FOREIGN KEY("Id_Produto")
-            REFERENCES "Cliente"("Id")
+        input("Digite Enter para continuar.")
 
-    
-    );
-''')
-
-# inserir Lista de Clientes
-lojaBanco.manipularBanco('''
-    INSERT INTO "Cliente"
-    VALUES (DEFAULT,"José da silva),
-        (DEFAULT,"silva),
-        (DEFAULT,"José),
-        (DEFAULT,"Pedro"),
-        (DEFAULT,"Paulo"),
-        (DEFAULT,"Ana Paula"),
-        (DEFAULT,"Maria);
-''')
-
-def inserirCliente():
-    
-    lojaBanco.manipularBanco('''
-    INSERT INTO "Cliente"
-    VALUES (DEFAULT,"José da silva),
-        (DEFAULT,"silva),
-        (DEFAULT,"José),
-        (DEFAULT,"Pedro"),
-        (DEFAULT,"Paulo"),
-        (DEFAULT,"Ana Paula"),
-        (DEFAULT,"Maria);
-''')
+    except(Exception, psycopg2.Error) as error:
+        print(error)

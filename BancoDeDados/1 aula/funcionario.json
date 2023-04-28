@@ -14,13 +14,6 @@
     "departamento": "Entregas"
   },
   {
-    "nome": "Tarik Ponciano",
-    "cpf": "123131231",
-    "salario": 9999999.0,
-    "cargo": "Instrutor",
-    "departamento": "Senac"
-  },
-  {
     "nome": "lucas",
     "cpf": "13112314",
     "salario": 5000,
@@ -40,5 +33,12 @@
     "salario": 4000.0,
     "cargo": "pescador",
     "departamento": "pesca"
+  },
+  {
+    "nome": "Rafael",
+    "cpf": "545454465",
+    "salario": 2500.0,
+    "cargo": "gerente de ti",
+    "departamento": "Ti"
   }
 ]
