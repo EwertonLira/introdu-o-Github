@@ -27,6 +27,8 @@ class Conexao:
         except(psycopg2.Error) as error:
             print("Ocorreu um erro ao tentar a conexão", error)
 
+            return False
+
 
 
     def manipularBanco(self,sql):
@@ -41,6 +43,10 @@ class Conexao:
             cursor.close()
             conn.close()
 
+            return True
+
         except(psycopg2.Error) as error:
             print("Ocorreu um erro ao tentar a conexão", error)
+        
+            return False
             

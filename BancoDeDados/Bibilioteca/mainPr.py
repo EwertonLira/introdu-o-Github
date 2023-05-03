@@ -12,9 +12,9 @@
 
 
 import psycopg2
-from Controle.classConexao import Conexao
-from Modelo.classCliente import Cliente
-from Modelo.classLivro import Livro
+# from Controle.classConexao import Conexao
+# from Modelo.classCliente import Cliente
+# from Modelo.classLivro import Livro
 
 def criarBancoDeDados(conexao):
     conexao.manipularBanco('''
