@@ -29,7 +29,6 @@ CREATE TABLE "autores" (
     "autor_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "autor_nome" varchar(255) NOT NULL
 );
-
 -- splitKeyComment table
 
 CREATE TABLE "livros" (
@@ -53,7 +52,6 @@ CREATE TABLE "clientes" (
     "cliente_email" varchar(255) NOT NULL DEFAULT 'não informado',
     "cliente_nascimento" date
 );
-
 -- splitKeyComment table
 
 CREATE TABLE "aluguel" (
@@ -95,85 +93,106 @@ SELECT * FROM "aluguel"
     ORDER BY "aluguel_id" ASC
 
 -- splitKeyComment select
+-- splitKeyComment select ID
+
+SELECT * FROM "autores"
+    WHERE "autor_id" = '{autorIdSelect}'
+
+-- splitKeyComment select ID
+
+SELECT * FROM "livros"
+    WHERE "livro_id" = '{livroIDSelect}'
+
+-- splitKeyComment select ID
+
+SELECT * FROM "clientes"
+    WHERE "cliente_id" = '{clienteIdSelect}'
+
+-- splitKeyComment select ID
+
+SELECT * FROM "aluguel"
+    WHERE "aluguel_id" = '{aluguelIdSelect}'
+
+-- splitKeyComment select ID
 -- splitKeyComment insert
 
 INSERT INTO "autores"
-    Values(default, '{autor_nome}')
+    Values(default, '{autorNomeInsert}')
 
 -- splitKeyComment insert
 
 INSERT INTO "livros"
-    Values(default, '{livroNome}', '{livroPaginas}','{livroAnoLancamento}','{livroAutorFK}' )
+    Values(default, '{livroNomeInsert}', '{livroPaginasInsert}','{livroAnoLancamentoInsert}','{livroAutorInsertFK}' )
 
 -- splitKeyComment insert
 
 INSERT INTO "clientes"
-    Values(default, '{clienteNome}', '{clienteCpf}', '{clienteTelefone}','{clienteEmail}', '{clienteNascimento}' )
+    Values(default, '{clienteNomeInsert}', '{clienteCpfInsert}', '{clienteTelefoneInsert}','{clienteEmailInsert}', '{clienteNascimentoInsert}' )
 
 -- splitKeyComment insert
 
 INSERT INTO "aluguel"
-    Values(default, '{clienteIdFK}', '{livroIdFK}', '{aluguelDataRetirada}','{aluguelDataEntrega}', '{aluguelNotificacao}' )
+    Values(default, '{clienteIdInsertFK}', '{livroIdInsertFK}', '{aluguelDataRetiradaInsert}','{aluguelDataEntregaInsert}', '{aluguelNotificacaoInsert}' )
 
 -- splitKeyComment insert
 -- splitKeyComment update
 
 UPDATE "autores"
-    SET "autor_nome" = 'Paulo de tarso'       
-    WHERE "autor_id" = '{autorIdEscolhido}';
+    SET "autor_nome" = '{autorNomeUpdate}'       
+    WHERE "autor_id" = '{autorIdEscolhidoUpdate}';
 
 -- splitKeyComment update
 
 UPDATE "livros"
-    SET "livro_nome" = '{livroNome}'
-        "livro_Paginas" = '{livroPaginas}'
-        "livro_ano_lancamento" = '{livroAnoLancamento}'
-        "livro_autor" = '{livroAutorFK}'    
-    WHERE "livro_id" = '{livroIdEscolhido}';
+    SET "livro_nome" = '{livroNomeUpdate}'
+        "livro_Paginas" = '{livroPaginasUpdate}'
+        "livro_ano_lancamento" = '{livroAnoLancamentoUpdate}'
+        "livro_autor" = '{livroAutorUpdateFK}'    
+    WHERE "livro_id" = '{livroIdEscolhidoUpdate}';
 
 -- splitKeyComment update
 
 UPDATE "clientes"
-    SET "cliente_nome" = '{clienteNome}'
-        "cliente_cpf" = '{clienteCpf}'
-        "cliente_telefone" = '{clienteTelefone}'
-        "cliente_email" = '{clienteEmail}'
-        "cliente_nascimento" = '{clienteNascimento}'    
-    WHERE "cliente_id" = '{clienteIdEscolhido}';
+    SET "cliente_nome" = '{clienteNomeUpdate}'
+        "cliente_cpf" = '{clienteCpfUpdate}'
+        "cliente_telefone" = '{clienteTelefoneUpdate}'
+        "cliente_email" = '{clienteEmailUpdate}'
+        "cliente_nascimento" = '{clienteNascimentoUpdate}'    
+    WHERE "cliente_id" = '{clienteIdEscolhidoUpdate}';
 
 -- splitKeyComment update
 
 UPDATE "aluguel"
-    SET "clienteIdFK" = '{clienteIdFK}'
-        "livroIdFK" = '{livroIdFK}'
-        "aluguelDataRetirada" = '{aluguelDataRetirada}'
-        "aluguelDataEntrega" = '{aluguelDataEntrega}'
-        "aluguelNotificacao" = '{aluguelNotificacao}'    
-    WHERE "aluguel_id" = '{aluguelIdEscolhido}';
+    SET "clienteIdFK" = '{clienteIdUpdateFK}'
+        "livroIdFK" = '{livroIdUpdateFK}'
+        "aluguelDataRetirada" = '{aluguelDataRetiradaUpdate}'
+        "aluguelDataEntrega" = '{aluguelDataEntregaUpdate}'
+        "aluguelNotificacao" = '{aluguelNotificacaoUpdate}'    
+    WHERE "aluguel_id" = '{aluguelIdEscolhidoUpdate}';
 
 -- splitKeyComment update
 -- splitKeyComment delete
 
  DELETE 
     FROM "autores"
-    WHERE "autor_id" = '{autorIdEscolhido}';
+    WHERE "autor_id" = '{autorIdEscolhidoDelete}';
 
 -- splitKeyComment delete
 
  DELETE 
     FROM "livros"
-    WHERE "livro_id" = '{livroIdEscolhido}';
+    WHERE "livro_id" = '{livroIdEscolhidoDelete}';
 
 -- splitKeyComment delete
 
  DELETE 
     FROM "clientes"
-    WHERE "cliente_id" = '{clienteIdEscolhido}';
+    WHERE "cliente_id" = '{clienteIdEscolhidoDelete}';
 
 -- splitKeyComment delete
 
  DELETE 
     FROM "aluguel"
-    WHERE "aluguel_id" = '{aluguelIdEscolhido}';
+    WHERE "aluguel_id" = '{aluguelIdEscolhidoDelete}';
 
 -- splitKeyComment delete

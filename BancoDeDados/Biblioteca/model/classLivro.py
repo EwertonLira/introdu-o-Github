@@ -1,4 +1,4 @@
-class Livro:
+class Livros:
     def __init__(self, id, nome, paginas, anoLancamento, autor):
         self._id = id
         self._nome = nome
@@ -6,6 +6,21 @@ class Livro:
         self._anoLancamento = anoLancamento
         self._autor = autor
     
+    def getId(self):
+        return self._id
+
+    def getNome(self):
+        return self._nome
+    
+    def getPaginas(self):
+        return self._paginas
+    
+    def getAnoLancamento(self):
+        return self._anoLancamento
+    
+    def getAutor(self):
+        return self._autor
+
     def imprimirLivro(self):
 
         print(f'''
@@ -39,3 +54,5 @@ class Livro:
         '''
 
         return sql
+
+livroTeste = Livros('default','as flores do meu jardim',45,1997,'chico Buarque')
