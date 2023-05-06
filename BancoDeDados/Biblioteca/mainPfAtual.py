@@ -1,6 +1,5 @@
 from conexaoPr import Conexao
 
-
 def criarTabelas(con):
     listaSql = ['''
     CREATE TABLE "Clientes"(
@@ -41,7 +40,6 @@ def criarTabelas(con):
         else:
             print("Falha na criação")
 
-
 def verMenuClientes():
 
     while True:
@@ -72,7 +70,6 @@ def verMenuClientes():
                 print("Escolha uma opção válida.")
 
         input("Digite Enter para continuar...")
-
 
 def verListaDeClientes():
 
