@@ -1,11 +1,15 @@
 class Livros:
     def __init__(self, id, nome, paginas, anoLancamento, autor):
+        self._tipoClass = "classLivro"
         self._id = id
         self._nome = nome
         self._paginas = paginas
         self._anoLancamento = anoLancamento
         self._autor = autor
-    
+
+    def getTipoClass(self):
+        return self._tipoClass
+
     def getId(self):
         return self._id
 
