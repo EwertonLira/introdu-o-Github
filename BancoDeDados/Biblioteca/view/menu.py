@@ -1,6 +1,4 @@
 
-from control.classLivro import *
-
 def visualizarMenu():
     print('''
         📚 Biblioteca Livre 📚
@@ -16,11 +14,14 @@ Escolha uma das opções[] abaixo e tecle [Enter↵]
 [6] 👀📕️ Visualizar lista de livro
 [0] 🚪 Sair
     ''')
+    op = input(": ")
+    return op
 
 def outrasVisualizacao():
+    "visualizar livros"
+
+    
     pass
-
-
 
 def imprimirLivro(obj):
 
@@ -31,8 +32,6 @@ def imprimirLivro(obj):
     Ano de lançamento - {obj._anoLancamento}
     Autor - {obj._autor}
     ''')
-
-imprimirLivro(livroTeste)
 
 
 

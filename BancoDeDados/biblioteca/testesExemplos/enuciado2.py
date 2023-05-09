@@ -1,3 +1,18 @@
+def verificarObj(self):
+        print(self._objSelecionado)
+        print(self._classLivro)
+        print("texto",str(self._objSelecionado))
+        print("texto",str(self._classLivro))
+        textoSt = str(self._classLivro)
+        novoTextoST = textoSt[8:-2]
+        print("era lista",novoTextoST)
+
+        if self._objSelecionado is self._classLivro:
+            print("ok é livro")
+        else:
+            print("não reconhecido")
+
+
 from Controle.classConexao import Conexao
 from Modelo.classCliente import Cliente
 from Modelo.classCompra import Compra

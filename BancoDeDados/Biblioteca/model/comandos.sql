@@ -93,27 +93,27 @@ SELECT * FROM "aluguel"
     ORDER BY "aluguel_id" ASC
 
 -- splitKeyComment select
--- splitKeyComment select ID
+-- splitKeyComment IDselect
 
 SELECT * FROM "autores"
     WHERE "autor_id" = '{autorIdSelect}'
 
--- splitKeyComment select ID
+-- splitKeyComment IDselect
 
 SELECT * FROM "livros"
-    WHERE "livro_id" = '{livroIDSelect}'
+    WHERE "livro_id" = '777'
 
--- splitKeyComment select ID
+-- splitKeyComment IDselect
 
 SELECT * FROM "clientes"
     WHERE "cliente_id" = '{clienteIdSelect}'
 
--- splitKeyComment select ID
+-- splitKeyComment IDselect
 
 SELECT * FROM "aluguel"
     WHERE "aluguel_id" = '{aluguelIdSelect}'
 
--- splitKeyComment select ID
+-- splitKeyComment IDselect
 -- splitKeyComment insert
 
 INSERT INTO "autores"

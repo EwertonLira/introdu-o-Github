@@ -1,10 +1,10 @@
 class Livros:
-    def __init__(self, id, nome, paginas, anoLancamento, autor):
-        self._id = id
-        self._nome = nome
-        self._paginas = paginas
-        self._anoLancamento = anoLancamento
-        self._autor = autor
+    def __init__(self):
+        self._id = None
+        self._nome = None
+        self._paginas = None
+        self._anoLancamento = None
+        self._autor = None
     
     def getId(self):
         return self._id
@@ -21,15 +21,12 @@ class Livros:
     def getAutor(self):
         return self._autor
 
-    def imprimirLivro(self):
+    def setDadosLivro(self):
 
-        print(f'''
-        ID - {self._id}
-        Nome - {self._nome}
-        Número de páginas - {self._paginas}
-        Ano de lançamento - {self._anoLancamento}
-        Autor - {self._autor}
-        ''')
+        self._nome = input("Insira o nome do livro")
+        self._paginas = input("Insira o número de páginas do livro")
+        self._anoLancamento = input("Insira o ano de lançamento do livro")
+        self._autor = input("Insira o ID do autor")
 
     def consultarLivroPorID(self):
         sql = f'''
@@ -55,4 +52,6 @@ class Livros:
 
         return sql
 
-livroTeste = Livros('default','as flores do meu jardim',45,1997,'chico Buarque')
+
+
+
