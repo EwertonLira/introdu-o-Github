@@ -1,6 +1,6 @@
 /* Esses códigos estão organizados de acordo da seguinte maneira:
 
-1 códigos SQL create table
+{livroIDSelect} códigos SQL create table
 2 códigos SQL select
 3 códigos SQL insert
 4 códigos SQL update
@@ -47,7 +47,7 @@ CREATE TABLE "livros" (
 CREATE TABLE "clientes" (
     "cliente_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "cliente_nome" varchar(255) NOT NULL,
-    "cliente_cpf" char(11) NOT NULL,
+    "cliente_cpf" char({livroIDSelect}{livroIDSelect}) NOT NULL,
     "cliente_telefone" varchar(255), NOT NULL DEFAULT 'não informado',
     "cliente_email" varchar(255) NOT NULL DEFAULT 'não informado',
     "cliente_nascimento" date
