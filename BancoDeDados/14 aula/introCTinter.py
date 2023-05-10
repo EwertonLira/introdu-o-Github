@@ -3,8 +3,8 @@ from customtkinter import *
 app = CTk()
 app.title("Sistema XYZ")
 
-larguraJanela = 800
-alturaJanela = 600
+larguraJanela = 720
+alturaJanela = 1280
 app.geometry(f"{larguraJanela}x{alturaJanela}")
 app.grid_columnconfigure((0,1,2), weight=1)
 app.grid_rowconfigure((0,1), weight=1)
