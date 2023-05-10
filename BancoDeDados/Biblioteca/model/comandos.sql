@@ -1,10 +1,10 @@
 /* Esses códigos estão organizados de acordo da seguinte maneira:
 
-{livroIDSelect} códigos SQL create table
-2 códigos SQL select
-3 códigos SQL insert
-4 códigos SQL update
-5 códigos SQL delete
+#1 códigos SQL create table
+#2 códigos SQL select
+#3 códigos SQL insert
+#4 códigos SQL update
+#5 códigos SQL delete
 
 todas as tabelas criadas tem seus respectivos códgiso SQL
 separados por splitkeycomment  que servem para separar os trechos de códigos
@@ -18,18 +18,16 @@ para dentro do script em pytho e ser feitas utilizações.
 
 todas as variáveis que iniciam com aspas simples e chave e terminam com chaves e aspas siples
 são variáveis para prencher com valores através dos script de python
->>> '{name}'
->>> '{example}'
+>>> '{#name#}'
+>>> '{#example#}'
 
 */
 
 -- splitKeyComment table
-
 CREATE TABLE "autores" (
     "autor_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "autor_nome" varchar(255) NOT NULL
 );
--- splitKeyComment table
 
 CREATE TABLE "livros" (
     "livro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -42,17 +40,14 @@ CREATE TABLE "livros" (
         REFERENCES "autores"("autor_id")
 );
 
--- splitKeyComment table
-
 CREATE TABLE "clientes" (
     "cliente_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "cliente_nome" varchar(255) NOT NULL,
-    "cliente_cpf" char({livroIDSelect}{livroIDSelect}) NOT NULL,
+    "cliente_cpf" char(11) NOT NULL,
     "cliente_telefone" varchar(255), NOT NULL DEFAULT 'não informado',
     "cliente_email" varchar(255) NOT NULL DEFAULT 'não informado',
     "cliente_nascimento" date
 );
--- splitKeyComment table
 
 CREATE TABLE "aluguel" (
     "aluguel_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -70,7 +65,6 @@ CREATE TABLE "aluguel" (
         FOREIGN KEY ("livro_id")
         REFERENCES "livros"("livro_id")
 );
-
 -- splitKeyComment table
 -- splitKeyComment select
 
@@ -101,7 +95,7 @@ SELECT * FROM "autores"
 -- splitKeyComment IDselect
 
 SELECT * FROM "livros"
-    WHERE "livro_id" = '777'
+    WHERE "livro_id" = '{livroIDSelect}'
 
 -- splitKeyComment IDselect
 

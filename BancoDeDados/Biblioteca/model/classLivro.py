@@ -1,14 +1,19 @@
-class Livros:
-    def __init__(self, id, nome, paginas, anoLancamento, autor):
-        self._tipoClass = "classLivro"
-        self._id = id
-        self._nome = nome
-        self._paginas = paginas
-        self._anoLancamento = anoLancamento
-        self._autor = autor
+
+class Livros():
+    def __init__(self): #nome, paginas, anoLancamento, autor, id = "default"):
+        self._tipoClass = "livros"
+        self._nomeTabela = "livro"
+        self._id = None
+        self._nome = None
+        self._paginas = None
+        self._anoLancamento = None
+        self._autor = None
 
     def getTipoClass(self):
         return self._tipoClass
+    
+    def getNomeTabela(self):
+        return self._nomeTabela
 
     def getId(self):
         return self._id
@@ -25,7 +30,8 @@ class Livros:
     def getAutor(self):
         return self._autor
 
-    def setDadosLivro(self):
+    def setInputDados(self):
+        print("Insira os dados do livros nos campos abaixo:")
 
         self._nome = input("Insira o nome do livro")
         self._paginas = input("Insira o número de páginas do livro")
@@ -36,6 +42,11 @@ class Livros:
         sql = f'''
         SELECT * FROM "livros"
         WHERE "livro_id" = '{self._id}'
+        '''
+    def consultarLivro(self):
+        sql = f'''
+        SELECT * FROM "livros"
+        ORDER BY "livro_id" ASC
         '''
         
         return sql
@@ -56,6 +67,18 @@ class Livros:
 
         return sql
 
-
-
+    def criarTabela(self):
+        sql = f'''
+        CREATE TABLE "livros" (
+        "livro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        "livro_nome" varchar(255) NOT NULL,
+        "livro_paginas" varchar(255), NOT NULL DEFAULT 'não informado',
+        "livro_ano_lancamento" varchar(255) NOT NULL DEFAULT 'não informado',
+        "livro_autor" varchar(255) NOT NULL DEFAULT 'não informado',
+        CONSTRAINT fk_autor
+        FOREIGN KEY ("livro_autor")
+        REFERENCES "autores"("autor_id")
+        );
+        '''
+        return sql
 
