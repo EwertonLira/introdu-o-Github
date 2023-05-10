@@ -5,19 +5,19 @@ from view.menu import *
 # ----- início instâncias -----------
 livro = Livros()
 
-conetBiblio = Conexao("Biblioteca","localhost","5432","postgres","postgres")
+conetBiblio = Conexao("Biblioteca","localhost","5432","postgres","postgre")
 
 #--------------fim instâcias -----------
 
 #------------ inicío ------------
-resultado = conetBiblio.consultarBanco(livro.consultarLivro())
-if len(resultado) >= 0:
-    print("banco de Dados pronto para uso")
-else:
-    conetBiblio.manipularBanco(livro.criarTabela())
-    conetBiblio.manipularBanco(cliente.criarTabela())
-    conetBiblio.manipularBanco(aluguel.criarTabela())
-    conetBiblio.manipularBanco(autor.criarTabela())
+# resultado = conetBiblio.consultarBanco(livro.consultarLivro())
+# if len(resultado) >= 0:
+#     print("banco de Dados pronto para uso")
+# else:
+conetBiblio.manipularBanco(livro.criarTabelaAutor())
+conetBiblio.manipularBanco(livro.criarTabelaLivro())
+    # conetBiblio.manipularBanco(cliente.criarTabela())
+    # conetBiblio.manipularBanco(aluguel.criarTabela())
 
 while True:
     
@@ -42,16 +42,14 @@ while True:
         case "6":
             resultado = conetBiblio.consultarBanco(livro.consultarLivro)
             if resultado:
-                print("ID | Nome do livro:)
-                for livro in resultado:
-                    print(f'''
-                    ''')
-
-                
+                imprimirListaLivros(resultado)
             else:
                 mensagemDeNegacao()
         case "0":
             print("saindo do programa")
+            break
 
 
+
+        
 

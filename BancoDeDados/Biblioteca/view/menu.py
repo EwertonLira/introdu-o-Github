@@ -22,3 +22,9 @@ def mensagemDeconfirmacao():
 
 def mensagemDeNegacao():
     print("O registro Falhou. verifique os dados inseridos e tente novamente")
+
+def imprimirListaLivros(listaLivros):
+    print("ID | nome do livro")
+    for livro in listaLivros:
+        print(f"{livro[0]} - {livro[1]}")
+

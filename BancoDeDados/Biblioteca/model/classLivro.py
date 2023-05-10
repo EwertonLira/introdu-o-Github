@@ -67,17 +67,26 @@ class Livros():
 
         return sql
 
-    def criarTabela(self):
+    def criarTabelaLivro(self):
         sql = f'''
         CREATE TABLE "livros" (
         "livro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         "livro_nome" varchar(255) NOT NULL,
-        "livro_paginas" varchar(255), NOT NULL DEFAULT 'não informado',
+        "livro_paginas" varchar(255) NOT NULL DEFAULT 'não informado',
         "livro_ano_lancamento" varchar(255) NOT NULL DEFAULT 'não informado',
-        "livro_autor" varchar(255) NOT NULL DEFAULT 'não informado',
+        "livro_autor" int NOT NULL,
         CONSTRAINT fk_autor
         FOREIGN KEY ("livro_autor")
         REFERENCES "autores"("autor_id")
+        );
+        '''
+        return sql
+    
+    def criarTabelaAutor(self):
+        sql = f'''
+        CREATE TABLE "autores" (
+        "autor_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        "autor_nome" varchar(255) NOT NULL
         );
         '''
         return sql
