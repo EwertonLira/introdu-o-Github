@@ -11,7 +11,6 @@ biblioDB = Conexao("Biblioteca","localhost","5432","postgres","postgres")
 aluguel = Aluguel()
 cliente = Clientes()
 livro = Livros()
-a = 1
 msg = Msg()
 CriarTodasTabelas(biblioDB)
 #_______________________ início do while _____________________
