@@ -1,19 +1,13 @@
-
 class Livros():
-    def __init__(self): #nome, paginas, anoLancamento, autor, id = "default"):
-        self._tipoClass = "livros"
-        self._nomeTabela = "livro"
+    def __init__(self):
         self._id = None
         self._nome = None
         self._paginas = None
         self._anoLancamento = None
-        self._autor = None
+        self._idAutor = None
+        self._nomeAutor = None
+        self._status = "ativo"
 
-    def getTipoClass(self):
-        return self._tipoClass
-    
-    def getNomeTabela(self):
-        return self._nomeTabela
 
     def getId(self):
         return self._id
@@ -30,13 +24,22 @@ class Livros():
     def getAutor(self):
         return self._autor
 
-    def setInputDados(self):
-        print("Insira os dados do livros nos campos abaixo:")
+    def _imprimirLivro(self):
 
-        self._nome = input("Insira o nome do livro")
-        self._paginas = input("Insira o número de páginas do livro")
-        self._anoLancamento = input("Insira o ano de lançamento do livro")
-        self._autor = input("Insira o ID do autor")
+        print(f'''
+        ID - {self._id}
+        Nome - {self._nome}
+        páginas - {self._paginas}
+        Ano de lançamento - {self._anoLancamento}
+        Autor do livro - {self._nomeAutor}
+        ''')
+
+    def _setInputDados(self):
+
+        self._nome = input("Insira o nome do livro: ")
+        self._paginas = input("Insira o número de páginas do livro: ")
+        self._anoLancamento = input("Insira o ano de lançamento do livro: ")
+        self._nomeAutor = input("Insira o nome do autor: ")
 
     def consultarLivroPorID(self):
         sql = f'''
@@ -60,34 +63,164 @@ class Livros():
         return sql
 
     def cadastrarLivro(self):
-        sql = f'''
+        print("Insira os dados do Livro")
+        self._setInputDados()
+        
+    def sqlCadastrarLivro(self):
+        sql = f'''        ;
         INSERT INTO "livros"
-        VALUES(default, '{self._nome}', '{self._paginas}', '{self._anoLancamento}', '{self._autor}')
-        '''
-
-        return sql
-
-    def criarTabelaLivro(self):
-        sql = f'''
-        CREATE TABLE "livros" (
-        "livro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        "livro_nome" varchar(255) NOT NULL,
-        "livro_paginas" varchar(255) NOT NULL DEFAULT 'não informado',
-        "livro_ano_lancamento" varchar(255) NOT NULL DEFAULT 'não informado',
-        "livro_autor" int NOT NULL,
-        CONSTRAINT fk_autor
-        FOREIGN KEY ("livro_autor")
-        REFERENCES "autores"("autor_id")
-        );
+        VALUES(default, '{self._nome}', '{self._paginas}', '{self._anoLancamento}', '{self._idAutor}', '{self._status}')
         '''
         return sql
     
-    def criarTabelaAutor(self):
+    def gerarListalivros(self):
         sql = f'''
-        CREATE TABLE "autores" (
-        "autor_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        "autor_nome" varchar(255) NOT NULL
-        );
-        '''
+            SELECT * FROM "livros"
+            ORDER BY "livro_id" ASC
+            '''
         return sql
 
+    def verlistaLivro(self,bancoDB,listaLivro,TipoDeVisualizacao):
+         # id livro [0]/ nome[1]/ páginas [2]/ ano lançamento[3]/ autor ID [4]
+        
+
+        match TipoDeVisualizacao:
+            case "completa":
+                for livro in listaLivro:
+                     if livro[5] == "ativo":
+                        self._id = livro[0]
+                        self._nome = livro[1]
+                        self._paginas = livro[2]
+                        self._anoLancamento = livro[3]
+                        
+                        #id autor [0] / nome autor [1]
+                        listaAutor = bancoDB.consultarBanco(f'''
+                        Select * from "autores"
+                        where "autor_id" = '{livro[4]}'
+                        ''')
+                        self._nomeAutor = listaAutor[0][1]
+
+                        self._imprimirLivro()
+            
+            case "id":
+                print("\nID | Livro")
+                for livro in listaLivro:
+                    if livro[5] == "ativo":
+                        self._id = livro[0]
+                        self._nome = livro[1]
+                        print(f" {self._id}   {self._nome}")
+
+    def mudarStatusLivroAlugado(self,livroID):
+        sql = f'''
+                    UPDATE "livros"
+                    SET "livro_status" = 'alugado'
+                    WHERE "livro_id" = '{livroID}';
+                    '''
+
+        return sql
+
+    def atualizar(self, livroID):   
+        opCampo = "rodarWhile"
+        while not(opCampo in "1¬2¬3¬4¬5¬0"):
+            print('''
+            qual campo deseja atualizar do livro?
+                    
+            [1]🔤 Nome
+            [2]🔖 páginas
+            [3]📅 ano de lançamento
+            [4]✒️ autor do livro
+            [5] Todos os campos
+            [0] ↩️ Voltar ao menu principal
+            ''')
+            opCampo = input(": ")
+            match opCampo:
+                case "1":
+                    self._nome = input("Insira o novo nome do livro: ")
+                    sql = f'''
+                        UPDATE "livros"
+                        SET "livro_nome" = '{self._nome}'
+                        WHERE "livro_id" = '{livroID}';
+                        '''
+                case "2":
+                    self._paginas = input("Insira o novo numero de páginas do livro: ")
+                    sql = f'''
+                        UPDATE "livros"
+                        SET "livro_paginas" = '{self._paginas}'
+                        WHERE "livro_id" = '{livroID}';
+                        '''
+                case "3":
+                    self._anoLancamento = input("Insira o novo ano de lançamento do livro: ")
+                    sql = f'''
+                        UPDATE "livros"
+                        SET "livro_ano_lancamento" = '{self._anoLancamento}'
+                        WHERE "livro_id" = '{livroID}';
+                        '''
+                case "4":
+                    self._nomeAutor = input("Insira o novo nome do Autor do livro: ")
+                    sql = f'''
+                        UPDATE "autores"
+                        SET "autor_nome" = '{self._nomeAutor}'
+                        WHERE "autor_id" = '{livroID}';
+                        '''
+                case "5":
+                    self._setInputDados()
+                    sql = f''' UPDATE "livros"
+                        SET "livro_nome" = '{self._nome}',
+                            "livro_paginas" = '{self._paginas}',
+                            "livro_ano_lancamento" = '{self._anoLancamento}'
+                        WHERE "livro_id" = '{livroID}';
+
+                        UPDATE "autores"
+                        SET "autor_nome" = '{self._nomeAutor}'
+                        WHERE "autor_id" = '{livroID}';
+
+                        '''
+                case "0":
+                    sql = None
+                case _:
+                    print("comando inválido Tente novamente")
+                    input("aperte [Enter↵] para continuar")
+
+            return sql
+    
+    def deletar(self, livroID):
+        sql = f'''
+            UPDATE "livros"
+            SET "livro_status" = 'desativado'
+            WHERE "livro_id" = '{livroID}';
+            '''
+
+        return sql
+
+    # ______________________________ Autor _____________________________
+    # __________________________________________________________________
+    def getIdAutor(self):
+        return self._idAutor
+    
+    def getNomeAutor(self):
+        return self._nomeAutor
+    
+    def setIdAutor(self, lista):
+        for autor in lista:
+            ultimoID = autor[0]
+
+        self._idAutor = ultimoID
+    
+    def setNomeAutor(self, nome):
+        self._nomeAutor = nome
+
+    def cadastrarAutor(self):
+
+        sql = f'''
+        INSERT INTO "autores"
+        VALUES(default, '{self._nomeAutor}')
+        '''
+        return sql
+    
+    def gerarListaAutor(self):
+            
+            sql = f'''
+            SELECT * FROM "autores"
+            ORDER BY "autor_id" ASC
+            '''
+            return sql

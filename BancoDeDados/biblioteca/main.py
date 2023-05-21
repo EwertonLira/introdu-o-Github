@@ -1,55 +1,135 @@
+# sistema de gerenciamento de Biblioteca
 from control.classConexao import *
+from control.criarTabelas import *
+from model.classAluguel import *
+from model.classCliente import *
 from model.classLivro import *
-from view.menu import *
+from view.ClassMsg import *
+#_______________________ instanciar classes _____________________
 
-# ----- início instâncias -----------
+biblioDB = Conexao("Biblioteca","localhost","5432","postgres","postgres")
+aluguel = Aluguel()
+cliente = Clientes()
 livro = Livros()
+a = 1
+msg = Msg()
+CriarTodasTabelas(biblioDB)
+#_______________________ início do while _____________________
 
-conetBiblio = Conexao("Biblioteca","localhost","5432","postgres","postgre")
+op = "rodarWhile"
+while op != "0":
+    op = msg.visualizarMenu()
 
-#--------------fim instâcias -----------
-
-#------------ inicío ------------
-# resultado = conetBiblio.consultarBanco(livro.consultarLivro())
-# if len(resultado) >= 0:
-#     print("banco de Dados pronto para uso")
-# else:
-conetBiblio.manipularBanco(livro.criarTabelaAutor())
-conetBiblio.manipularBanco(livro.criarTabelaLivro())
-    # conetBiblio.manipularBanco(cliente.criarTabela())
-    # conetBiblio.manipularBanco(aluguel.criarTabela())
-
-while True:
-    
-    op = visualizarMenu()
-    
     match op:
-        case "1":
-            pass
+        case "1": 
+            sqlInsertCliente = cliente.cadastrarCliente()
+            resultadoInsercao = biblioDB.manipularBanco(sqlInsertCliente)
+            msg.mensagemDeConfirmacao(resultadoInsercao)
+
         case "2":
-            pass
+            vazio = []
+            _ = msg.mensagemAlugarLivro("fraseInicial", vazio)
+            # visualizar lista de clientes e escolher uma opção
+            sqlSelectCliente = cliente.gerarListaClientes()
+            listaClientes = biblioDB.consultarBanco(sqlSelectCliente)
+            cliente.verlistaClientes(listaClientes,"id")
+            idEscolhidoCliente = msg.mensagemAlugarLivro("fraseI",listaClientes)
+            if idEscolhidoCliente:
+                aluguel.setIdCliente(idEscolhidoCliente)
+                # visualizar lista de livros e escolher uma opção
+                sqlSelectLivro = livro.gerarListalivros()
+                listaLivro = biblioDB.consultarBanco(sqlSelectLivro)
+                livro.verlistaLivro(biblioDB,listaLivro,"id")
+                idEscolhidoLivro = msg.mensagemAlugarLivro("fraseII",listaLivro,True)
+                if idEscolhidoLivro:
+                    # vai mudar o status do livro para alugado
+                    sqlLivroAlugado = livro.mudarStatusLivroAlugado(idEscolhidoLivro)
+                    _ = biblioDB.manipularBanco(sqlLivroAlugado)
+                    aluguel.setIdLivro(idEscolhidoLivro)
+                    # outros dados do aluguel
+                    sqlInsertAluguel = aluguel.cadastrarAluguel()
+                    resultadoInsercao = biblioDB.manipularBanco(sqlInsertAluguel)
+                    
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+                else:
+                    msg.mensagemDeConfirmacao(idEscolhidoLivro)
+            else:
+                msg.mensagemDeConfirmacao(idEscolhidoCliente)
+
         case "3":
-            livro.setInputDados()
-            resultado = conetBiblio.manipularBanco(livro.cadastrarLivro())
-            if resultado:
-                mensagemDeconfirmacao()
-            else:
-                mensagemDeNegacao()
+            livro.cadastrarLivro()
+            sqlInsertAutor = livro.cadastrarAutor()
+            _ = biblioDB.manipularBanco(sqlInsertAutor)
+            sqlAutor = livro.gerarListaAutor()
+            listaAutores = biblioDB.consultarBanco(sqlAutor)
+            livro.setIdAutor(listaAutores)
+            sqlInsertLivro = livro.sqlCadastrarLivro()
+            resultadoInsercao = biblioDB.manipularBanco(sqlInsertLivro)
+            msg.mensagemDeConfirmacao(resultadoInsercao)
+
         case "4":
-            pass
-        case "5":
-            pass
-        case "6":
-            resultado = conetBiblio.consultarBanco(livro.consultarLivro)
-            if resultado:
-                imprimirListaLivros(resultado)
+            sqlSelectCliente = cliente.gerarListaClientes()
+            listaClientes = biblioDB.consultarBanco(sqlSelectCliente)
+            cliente.verlistaClientes(listaClientes,"completa")
+            opcao = msg.alterarLista()
+            if opcao == "Atualizar":
+                cliente.verlistaClientes(listaClientes,"id")
+                IdEscolhido = msg.mensagemAtualizar(listaClientes)
+                if IdEscolhido:
+                    sqlUpdateCliente = cliente.atualizar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlUpdateCliente)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+            elif opcao == "Deletar":
+                cliente.verlistaClientes(listaClientes,"id")
+                IdEscolhido = msg.mensagemDeletar(listaClientes)
+                if IdEscolhido:
+                    sqlDeleteCliente = cliente.deletar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlDeleteCliente)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
             else:
-                mensagemDeNegacao()
-        case "0":
-            print("saindo do programa")
-            break
+                pass 
+        case "5":
+            sqlSelectAluguel = aluguel.gerarListaAluguel()
+            listaAluguel = biblioDB.consultarBanco(sqlSelectAluguel)
+            aluguel.verlistaAluguel(listaAluguel,"completa")
+            opcao = msg.alterarLista()
+            if opcao == "Atualizar":
+                aluguel.verlistaAluguel(listaAluguel,"id")
+                IdEscolhido = msg.mensagemAtualizar(listaAluguel)
+                if IdEscolhido:
+                    sqlUpdateAluguel = aluguel.atualizar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlUpdateAluguel)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+            elif opcao == "Deletar":
+                aluguel.verlistaAluguel(listaAluguel,"id")
+                IdEscolhido = msg.mensagemDeletar(listaAluguel)
+                if IdEscolhido:
+                    sqlDeleteAluguel = aluguel.deletar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlDeleteAluguel)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+            else:
+                pass 
 
+        case "6":
+            sqlSelectLivro = livro.gerarListalivros()
+            listaLivro = biblioDB.consultarBanco(sqlSelectLivro)
+            livro.verlistaLivro(biblioDB,listaLivro,"completa")
+            opcao = msg.alterarLista()
+            if opcao == "Atualizar":
+                livro.verlistaLivro(biblioDB,listaLivro,"id")
+                IdEscolhido = msg.mensagemAtualizar(listaLivro,True)
+                if IdEscolhido:
+                    sqlUpdateLivro = livro.atualizar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlUpdateLivro)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+            elif opcao == "Deletar":
+                livro.verlistaLivro(biblioDB,listaLivro,"id")
+                IdEscolhido = msg.mensagemDeletar(listaLivro,True)
+                if IdEscolhido:
+                    sqlDeleteLivro = livro.deletar(IdEscolhido)
+                    resultadoInsercao = biblioDB.manipularBanco(sqlDeleteLivro)
+                    msg.mensagemDeConfirmacao(resultadoInsercao)
+            else:
+                pass
 
-
-        
-
+print("Obrigado por usar a Biblioteca!")        
