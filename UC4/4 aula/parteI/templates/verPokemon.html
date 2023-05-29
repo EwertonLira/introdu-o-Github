@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+
+</head>
+
+<body>
+
+   <!-- <h1 style="font-style: normal; position: relative; left: 40%;"> Meu Projeto Flask </h1> -->
+   <h1> Meu Pokemon </h1>
+   <a href="{{url_for('verPokemons')}}">Voltar para a Pokedex</a>
+
+   <p>
+    <b>ID</b> - {{pokemon[0]}} <br>
+    <b>Espécie</b> - {{pokemon[1]}}<br>
+    <b>Peso</b> - {{pokemon[2]}} Libras<br> 
+    <b>Altura</b> - {{pokemon[3]}} Polegadas<br>
+    <b>Tipo</b> - {{pokemon[4]}}<br>
+   </p>
+   <div>
+   <a href="/pokemons/{{pokemon[0]}}/remover">Remover este Pokemon</a>
+
+   <a href="{{url_for('removerPokemonEspecifico',idPokemon=pokemon[0])}}">Remover este Pokemon ver 2</a>
+</div>
+<div>
+    <a href="/pokemons/{{pokemon[0]}}/atualizar">Atualizar este Pokemon</a>
+</div>
+   
+
+</body>
+
+</html>
