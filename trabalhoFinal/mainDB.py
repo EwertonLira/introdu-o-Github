@@ -2,13 +2,16 @@
 ############# pré-requisitos para rodar o arquivo mainDB.py  ##################
 ###############################################################################
 # 
-# instale o psycopg2 na biblioteca padrão python
-# 
+# instale as seguintes bibliotecas no padrão python:
+# psycopg2
+# Pillow
+# requests
+
 from PIL import Image
 from io import BytesIO
 import requests
 
-from classConexao import Conexao
+from classConexao import *
 from sqlScript import *
 import env
 
@@ -108,21 +111,21 @@ def BDinsertProduto():
     valor = input("insert values")
     descricao = input("insert description")
     
-    # para adicionar uma imagem no banco de dados:
+    #///////////////////////////////////////////////
+    # # para adicionar uma imagem no banco de dados:
+    # with open(urlImagem, "rb") as arquivo:
+    #     imagemBytes = arquivo.read()
+    # #///////////////////////////////////////////////
     urlImagem = input("insira o caminho da imagem ou url")
-    
     resposta = requests.get(url=urlImagem)
     dadosDaImagem = resposta.content
-
     imagemBytes = BytesIO(dadosDaImagem).read()
     
-    
-    imagem = input("insert image")
     # status vai com o valor padrão "ativo" para o banco de dados
 
     resultado = conexao.manipularBanco(f"""
     INSERT INTO "produto"
-    VALUES (DEFAULT ,'{nome}','{valor}','{descricao}','{imagemBytes}',DEFAULT)                                 
+    VALUES (DEFAULT ,'{nome}','{valor}','{descricao}', {psycopg2.Binary(imagemBytes)} ,DEFAULT)                                 
     """)
     if resultado:
         pass
@@ -131,20 +134,31 @@ def BDinsertProduto():
 
 def recuperarImagem():
     idEscolhido = input("insert id image: ")
-    resultado = conexao.consultarBanco(f'SELECT "produto_imagem" FROM "produto" WHERE ID = {idEscolhido}')
-    resultadoImagem = resultado[0]
+    resultado = conexao.consultarBanco(f'SELECT "produto_imagem" FROM "produto" WHERE produto_id = {idEscolhido}')
+    resultadoImagem = resultado[0][0]
     
-    imagem = Image.open(BytesIO(resultadoImagem))
-
+    dados = BytesIO(resultadoImagem)
+    imagem = open(dados, "wb")
+    imagem = Image.open(resultadoImagem)
+    
+    # Abrir a imagem no visualizador padrão
+    imagem = Image.open("imagem.jpg")
     imagem.show()
 
-criarTabelas()
+    #///////////////////////////////////////////////
+    # # Salvar o arquivo binário como imagem
+    # with open("imagem.jpg", "wb") as arquivo:
+    #     arquivo.write(resultadoImagem)
+    #///////////////////////////////////////////////
 
-BDinsertCliente(BDinsertEnderco)
+################## início do código ######################
+# criarTabelas()
 
+# BDinsertCliente(BDinsertEnderco)
+# print("agora crie um orçamento")
+# BDinsertOrcamento()
+# print("agora adicione um produto ao banco de dados")
+# BDinsertProduto()
 
-print("agora crie um orçamento")
-BDinsertOrcamento()
-BDinsertProduto()
-input("tecle enter para continuar")
+input("tecle enter para continuar recuperar imagem")
 recuperarImagem()
