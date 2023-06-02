@@ -1,0 +1,5 @@
+databaseName = "pokemon"
+userName = "postgres"
+password = "postgre"
+hostName = "localhost"
+port = "5432"
