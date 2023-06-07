@@ -1,3 +1,4 @@
+sqlbackup = '''
 --
 -- PostgreSQL database dump
 --
@@ -34,7 +35,7 @@ CREATE TABLE public."Pokedex" (
 );
 
 
-ALTER TABLE public."Pokedex" OWNER TO postgres;
+ALTER TABLE public."Pokedex" OWNER TO cateqadmin;
 
 --
 -- Data for Name: Pokedex; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -205,3 +206,4 @@ ALTER TABLE ONLY public."Pokedex"
 -- PostgreSQL database dump complete
 --
 
+'''
