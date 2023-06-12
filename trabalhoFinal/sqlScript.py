@@ -1,3 +1,4 @@
+# tabelas do postgreSQL
 # tudo em uma strig.
 sqltabelas = '''
 -- BEGIN;
