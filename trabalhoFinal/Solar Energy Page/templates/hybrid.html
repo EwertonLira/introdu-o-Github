@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Simulação Híbrido</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/reset.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <body class="homepage">
+        <form method="post"> <!--MODIFICAÇÃO BD linha 15-->
+        <div class="wrapper">
+            <header class="site-header">
+                <a href="{{ url_for('simulacao') }}"><img src="{{ url_for('static', filename='images/home.png') }}" class="home-btn"></a>
+                <h1>Simulação Sistema Híbrido</h1>
+            </header>
+            <main class="main-content">
+                <div class="card-wrapper" id="first">
+                    <div class="card">
+
+                        <h2>Energy Requirement Calculation</h2>
+                        <div class="energy-container">
+                            <span>Daily Energy Usage (kWhr / day): </span>
+                            <div class="text-field-group">
+                                <!-- MODIFICAÇÃO BD name = "KWHRDIA" value = "{{request.form['KWHRDIA']}}"-->
+                                <input class="textarea" id="requirement" type="number" name="KWHRDIA" value="{{request.form['KWHRDIA']}}"  required>
+                                <span class="bar"></span>
+                                <label class="Label">kWhr</lable>
+                                </div>
+                        </div>
+                        <div style="margin-top: 3rem; font-size: 1.4rem;">% Energy to be derieved from Solar</div>
+                        <div class="slider">
+                            <!-- MODIFICAÇÃO BD name="ENERGIASOL" value="{{request.form['ENERGIASOL=13']}}"-->
+                            <input type="range" id="slider1" name="ENERGIASOL" value="{{request.form['ENERGIASOL']}}" oninput="rangevalue1.value=value" />
+                            <output id="rangevalue1">50</output>
+                        </div>
+                        <div class="dropdown">
+                            <div class="select">
+                                <!-- MODIFICAÇÃO BD name="ESTADO" value="{{request.form['ESTADO']}}" -->
+                                <select id="state" class="select-text" name="ESTADO" value="{{request.form['ESTADO']}}" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="são paulo">São Paulo</option>
+                                    <option value="ceará">Ceará</option>
+                                    <option value="piauí">Piauí</option>
+                                </select>
+                                <span class="select-highlight"></span>
+                                <span class="select-bar"></span>
+                                <label class="select-label">State</label>
+                            </div>
+                            <div class="select">
+                                <!-- MODIFICAÇÃO BD name="CIDADE" value="{{request.form['CIDADE']}}" -->
+                                <select id="city" class="select-text" name="CIDADE" value="{{request.form['CIDADE']}}" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="caucaia">caucaia</option>
+                                    <option value="fortaleza">fortaleza</option>
+                                    <option value="pentecoste">pentecoste</option>
+                                    <option value="tururu">tururu</option>
+                                </select>
+                                <span class="select-highlight"></span>
+                                <span class="select-bar"></span>
+                                <label class="select-label">City</label>
+                            </div>
+                            <div>
+                                <span id='sunHours'>Solar Irradiation: </span>
+                            </div>
+                        </div>
+                        <a href="#second">
+                            <div class="nav-button" id="systemConstrain">
+                                Next
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-wrapper" id="second">
+                    <div class="card">
+
+                        <h2>Battery Size Calculation</h2>
+                        
+                        <div class="dropdown">
+                            <div>Select Battery Voltage</div>
+                            <div class="select" style="width: 50%;">
+                                <!-- MODIFICAÇÃO BD name = "BATERIAVOLTS" value = "{{request.form['BATERIAVOLTS']}}"-->
+                                <select id="voltage" class="select-text" name="BATERIAVOLTS" value = "{{request.form['BATERIAVOLTS']}}" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="12">12V</option>
+                                    <option value="24">24V</option>
+                                    <option value="48">48V</option>
+                                    <option value="96">96V</option>
+                                </select>
+                                <span class="select-highlight"></span>
+                                <span class="select-bar"></span>
+                                <label class="select-label">Voltage</label>
+                            </div>
+                        </div>
+                        <div class="energy-container">
+                            <span>Days worth of Backup Power: </span>
+                            <div class="text-field-group">
+                                <!-- MODIFICAÇÃO BD name = "ENERGIADIARESERVA" value = "{{request.form['ENERGIADIARESERVA']}}"-->
+                                <input class="textarea" id="autonomy" type="number" name="ENERGIADIARESERVA" value="{{request.form['ENERGIADIARESERVA']}}" required>
+                                <span class="bar"></span>
+                                <label class="Label">Days</lable>
+                                </div>
+                            </div>
+                            <div id="batteryBackup" class="nav-button-list">
+                                <a href="#first">
+                                    <div class="nav-button">
+                                        Previous
+                                    </div>
+                                </a>
+                                <a href="#third">
+                                    <div class="nav-button">
+                                        Next
+                                    </div>
+                                </a>
+                            </div>
+                    </div>
+                </div>
+                <div class="card-wrapper" id="third">
+                    <div class="card">
+                        
+                        <h2>Array Size Calculation</h2>
+                        
+                        <div class="radio-group">
+                            <label for="r7">
+                                <!-- MODIFICAÇÃO BD name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}"-->
+                                <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" value="standard panels (15%)" checked /><span>Standard Panels (15%)</span>
+                            </label>
+                            <label for="r8">
+                                <input id="r8" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}"/><span>Premium Panels (20%)</span>
+                            </label>
+                            <label for="r9">
+                                <input id="r9" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}"/><span>Thin Film Panels (13%)</span>
+                            </label>
+                        </div>
+                        <div style="margin-top: 3rem; font-size: 1.25rem;">Module Wattage:</div>
+                        <div class="slider">
+                            <!-- MODIFICAÇÃO BD name="MODULOWATT" value="{{request.form['MODULOWATT']}}"-->
+                            <input id="rv3" type="range" min="5" max="400" step="5" name="MODULOWATT" value="{{request.form['MODULOWATT']}}" oninput="rangevalue3.value=value"/>
+                            <output id="rangevalue3">20</output>
+                        </div>
+                        <div id="solarPanel" class="nav-button-list">
+                            <a href="#second">
+                                <div class="nav-button">
+                                    Previous
+                                </div>
+                            </a>
+                            <a href="#fourth">
+                                <div class="nav-button">
+                                    Next
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-wrapper" id="fourth">
+                    <div class="card">
+                        <h2>Advanced Parameters</h2>
+                        <div class="default-parameters">
+                            <div class="form__group">
+                                <label for="num1" class="form__label">Operating Temperature (*C)</label>
+                                <!-- MODIFICAÇÃO BD name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}"-->
+                                <input type="number" id="opTemp" class="form__field" name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}" />
+                            </div>
+                            <div class="form__group">
+                                <label for="num2" class="form__label">Inverter Losses (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}"-->
+                                <input type="number" id="inverterLoss" class="form__field" name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}" value=10>
+                            </div>
+                            <div class="form__group">
+                                <label for="num8" class="form__label">Inverter Safety Factor (%)</label>
+                                <!-- MODIFICAÇÃO BD name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}"-->
+                                <input type="number" id="safety-factor" class="form__field" name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}" value=15>
+                            </div>
+                            <div class="form__group">
+                                <label for="num3" class="form__label">Wiring and Cable Losses (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASCABO" value="{{request.form['PERDASCABO']}}"-->
+                                <input type="number" id="cableLoss" class="form__field" name="PERDASCABO" value="{{request.form['PERDASCABO']}}" value=5>
+                            </div>
+                            <div class="form__group">
+                                <label for="num4" class="form__label">Mismatch Losses (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}"-->
+                                <input type="number" id="mismatchLoss" class="form__field" name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}">
+                            </div>
+                            <div class="form__group">
+                                <label for="num5" class="form__label">Soiling & Shading Losses (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}"-->
+                                <input type="number" id="soilingLoss" class="form__field" name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}" value=2>
+                            </div>
+                            <div class="form__group">
+                                <label for="num6" class="form__label">Depth of Discharge (%)</label>
+                                <!-- MODIFICAÇÃO BD name="PROFUNDIDADE" value="{{request.form['PROFUNDIDADE']}}"-->
+                                <input type="number" id="dod" class="form__field" name="PROFUNDIDADE" value="{{request.form['PROFUNDIDADE']}}" value=50>
+                            </div>
+                            <div class="form__group">
+                                <label for="num7" class="form__label">Efficiency of Battery (%)</label>
+                            <!-- MODIFICAÇÃO BD name="BATERIAEFICIENCIA" value="{{request.form['BATERIAEFICIENCIA']}}"-->
+                                <input type="number" id="batteryEfficiency" class="form__field"name="BATERIAEFICIENCIA" value="{{request.form['BATERIAEFICIENCIA']}}" value=90>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODIFICAÇÃO BD troquei o div por button-->
+                <div style="text-align:center;">
+                <button class="card-wrapper calculate"  type="submit"  onclick="calculate();">
+                    <div class="card">
+                        <h2>Calculate</h2>
+                    </div>
+                </button><!-- MODIFICAÇÃO BD troquei o div por button-->
+                </div>
+                <div class="card-wrapper">
+                    <div class="card">
+
+                        <h2>Results</h2>
+
+                        <div class="results">
+                            <div>Size of Power Plant: <span class="final-result">0</span>kW</div>
+                            <div>Power Plant Output: <span class="final-result">0</span>kW</div>
+                            <div>Total Area Required: <span class="final-result">0</span>m<sup>2</sup></div>
+                            <div>Module Rating: <span class="final-result">0</span>W</div>
+                            <div>Number of Modules Required: <span class="final-result">0</span></div>
+                            <div>Battery Capacity: <span class="final-result">0</span>Ah</div>
+                            <div>Inverter Power Rating: <span class="final-result">0</span>kW</div>
+                            <div>Total Cost (excluding 30% subsidy): <span class="final-result">0</span></div>
+                            <div>Government Subsidized Cost: <span class="final-result">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="site-footer">
+
+        </footer>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/hybrid.js') }}"></script>
+        </form>  <!-- MODIFICAÇÃO BD linha 218 -->
+    </body>
+
+</html>
