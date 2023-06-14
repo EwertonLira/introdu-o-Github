@@ -1,0 +1,2 @@
+PS C:\Program Files\PostgreSQL\15\bin> ./pg_dump.exe -h "localhost" -U "postgres" -d "pokemon" --inserts -f "C:\Users\aluno turma 2\Documents\Ewerton Lira\pokemonNovo.sql"
+Password:
