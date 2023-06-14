@@ -3,8 +3,6 @@
 ###############################################################################
 # instale as seguintes bibliotecas no padrão python:
 # psycopg2
-# Pillow
-# requests
 
 from bancoDeDados.classConexao import *
 from bancoDeDados.sqlScript import sqltabelas

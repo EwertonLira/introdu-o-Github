@@ -46,7 +46,7 @@ def login():
 
         resultado = conexao.manipularBanco(f'''
             INSERT INTO "endereco"
-            values( DEFAULT ,'CEP','UF', 'CIDADE', 'BAIRRO', 'NOME', 'COMPLEMENTO' , DEFAULT)
+            values( DEFAULT ,'{request.form['CEP']}','UF', 'CIDADE', 'BAIRRO', 'NOME', 'COMPLEMENTO' , DEFAULT)
             ''')
         
         if resultado:
