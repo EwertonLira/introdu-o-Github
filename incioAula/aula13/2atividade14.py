@@ -1,0 +1,1 @@
+# 2. Crie uma classe Veiculo que tenha os atributos modelo, cor e ano e o método ligar(). Crie também as classes Carro, Moto e Bicicleta que herdem da classe Veiculo e sobrescrevam o método ligar() para imprimir “O carro está ligado”, “A moto está ligada” e “A bicicleta está pronta” respectivamente. Crie alguns objetos dessas classes e teste o método ligar() em cada um.
