@@ -1,3 +1,5 @@
+import csv
+
 # ////////////////////// variáveis///////
 mediaAnual = ""
 radiacao = ""
@@ -19,3 +21,19 @@ def numeroDePlacas():
 def preco():
     resultado = placaAdotada * numeroDePlacas
     return resultado
+
+
+caminho = "Simulacao\dados_calculo.csv"
+def abrirCsv():
+
+    with open(caminho, "r") as arquivo:
+        arquivoCsv = csv.reader(arquivo, delimiter=";")
+        for linha in arquivoCsv:
+            print(linha)
+        # for i, linha in enumerate(arquivoCsv):
+        #     if i == 0:
+        #         print("cabeçalho: "+str(linha))
+        #     else:
+        #         print("valor: "+str(linha))
+    
+abrirCsv()

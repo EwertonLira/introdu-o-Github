@@ -1,6 +1,5 @@
 # tudo em uma strig.
-sqltabelas1 = '''
--- BEGIN;
+sqltabelas = '''
 CREATE TABLE "endereco" (
     "endereco_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "endereco_status" varchar(255) NOT NULL DEFAULT 'ativo',
@@ -12,6 +11,7 @@ CREATE TABLE "endereco" (
     "endereco_cidade" varchar(255),
     "endereco_estado" varchar(255)
 );
+
 CREATE TABLE "registro" (
     "registro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "registro_status" varchar(255) NOT NULL DEFAULT 'ativo',
@@ -30,8 +30,7 @@ CREATE TABLE "cartao" (
     "cartao_ano" varchar(255),
     "cartao_cvv" varchar(255)    
 );
-'''
-sqltabelas = '''
+
 CREATE TABLE "sistema" (
     "sistema_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "sistema_status" varchar(255) NOT NULL DEFAULT 'ativo',
@@ -58,19 +57,28 @@ CREATE TABLE "sistema" (
     "sistema_profundidade" varchar(255),
     "sistema_bateriaeficiencia" varchar(255)
 );
-'''
-
-'''    
-CREATE TABLE "cliente" (
-    "cliente_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "cliente_nome" varchar(255) NOT NULL,
-    "cliente_telefone" varchar(15) NOT NULL,
-    "cliente_email" varchar(255) UNIQUE,
-    "cliente_endereco" int,
-    "cliente_status" varchar(255) NOT NULL DEFAULT 'ativo',
+  
+CREATE TABLE "pedido" (
+    "pedido_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "pedido_status" varchar(255) NOT NULL DEFAULT 'ativo',
+    
+    "pedido_registro" int,
+    "pedido_endereco" int,
+    "pedido_sistema" int,
+    "pedido_cartao" int,
+        
         CONSTRAINT fk_endereco
-            FOREIGN KEY ("cliente_endereco")
-            REFERENCES "endereco"("endereco_id")
+            FOREIGN KEY ("pedido_endereco")
+            REFERENCES "endereco"("endereco_id"),
+        CONSTRAINT fk_registro
+            FOREIGN KEY ("pedido_registro")
+            REFERENCES "registro"("registro_id"),
+        CONSTRAINT fk_sistema
+            FOREIGN KEY ("pedido_sistema")
+            REFERENCES "sistema"("sistema_id"),
+        CONSTRAINT fk_cartao
+            FOREIGN KEY ("pedido_cartao")
+            REFERENCES "cartao"("cartao_id")
 );
 
 -- /////////////////////////////////////////////////////////////////////////
@@ -143,6 +151,4 @@ CREATE TABLE "cliente" (
 --     "produto_status" varchar(255) NOT NULL DEFAULT 'ativo'
 );
 
-
--- COMMIT;
 '''

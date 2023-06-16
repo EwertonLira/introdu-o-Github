@@ -86,7 +86,7 @@ def login():
         resultado = conexao.consultarBanco(f'''SELECT "registro_email","registro_senha" FROM "registro" WHERE "registro_email" = '{email}' ;''')
         user = False
         if resultado:
-            resultado = resultado[0] # tirar da 1 lista os resultados
+            resultado = resultado[0] # tirar da primeira lista os resultados
             emailDB = resultado[0]
             senhaDB = resultado[1]
             print("email",emailDB,"senha",senhaDB)
