@@ -3,6 +3,7 @@ sqltabelas = '''
 CREATE TABLE "endereco" (
     "endereco_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "endereco_status" varchar(255) NOT NULL DEFAULT 'ativo',
+
     "endereco_cep" varchar(255) NOT NULL,
     "endereco_rua" varchar(255),
     "endereco_numero" varchar(255),
@@ -15,6 +16,7 @@ CREATE TABLE "endereco" (
 CREATE TABLE "registro" (
     "registro_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "registro_status" varchar(255) NOT NULL DEFAULT 'ativo',
+
     "registro_nome" varchar(255) NOT NULL,
     "registro_sobrenome" varchar(15) NOT NULL,
     "registro_email" varchar(255) UNIQUE,
@@ -24,11 +26,20 @@ CREATE TABLE "registro" (
 CREATE TABLE "cartao" (
     "cartao_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "cartao_status" varchar(255) NOT NULL DEFAULT 'ativo',
+
     "cartao_numero" varchar(255) NOT NULL,
     "cartao_titular" varchar(255),
     "cartao_mes" varchar(255),
     "cartao_ano" varchar(255),
     "cartao_cvv" varchar(255)    
+);
+CREATE TABLE "produto" (
+    "produto_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "produto_status" varchar(255) NOT NULL DEFAULT 'ativo',
+
+    "produto_nome" varchar(255) NOT NULL,
+    "produto_potencia" varchar(255),
+    "produto_preco" varchar(255)
 );
 
 CREATE TABLE "sistema" (
@@ -36,7 +47,6 @@ CREATE TABLE "sistema" (
     "sistema_status" varchar(255) NOT NULL DEFAULT 'ativo',
     "sistema_escolha_usuario" varchar(255) NOT NULL,
     
-
     "sistema_kwhrdia" varchar(255),
     "sistema_energiasol" varchar (255),
     "sistema_estado" varchar(255),
@@ -66,6 +76,7 @@ CREATE TABLE "pedido" (
     "pedido_endereco" int,
     "pedido_sistema" int,
     "pedido_cartao" int,
+    "pedido_produto" int,
         
         CONSTRAINT fk_endereco
             FOREIGN KEY ("pedido_endereco")
@@ -78,10 +89,13 @@ CREATE TABLE "pedido" (
             REFERENCES "sistema"("sistema_id"),
         CONSTRAINT fk_cartao
             FOREIGN KEY ("pedido_cartao")
-            REFERENCES "cartao"("cartao_id")
+            REFERENCES "cartao"("cartao_id"),
+        CONSTRAINT fk_produto
+            FOREIGN KEY ("pedido_produto")
+            REFERENCES "produto"("produto_id")
 );
 
--- /////////////////////////////////////////////////////////////////////////
+-- //////////////////////////////////////////////////////////////////////////
 -- /////////////////////////////////////////////////////////////////////////
 -- ////////////////////tabelas por enquanto desativadas./////////////////////
 -- 
@@ -99,13 +113,6 @@ CREATE TABLE "pedido" (
 --             REFERENCES "cliente"("cliente_id")
 -- );
 
--- CREATE TABLE "banco" (
---     "banco_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     "banco_nome" varchar(255),
---     "banco_banco" varchar (255),
---     "banco_descricao" varchar(255),
---     "banco_status" varchar(255) NOT NULL DEFAULT 'ativo'
--- );
 
 -- CREATE TABLE "pagamento" (
 --     "pagamento_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -123,32 +130,5 @@ CREATE TABLE "pedido" (
 --             FOREIGN KEY ("banco_id")
 --             REFERENCES "banco"("banco_id")
 -- );
-
--- CREATE TABLE "pedido" (
---     "pedido_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     "cliente_id" int,
---     "orcamento_id" int,
---     "pagamento_id" int,
---     "pedido_data" timestamp NOT NULL DEFAULT (CURRENT_TIMESTAMP),
---     "pedido_status" varchar(255) NOT NULL DEFAULT 'ativo',
---         CONSTRAINT fk_cliente
---             FOREIGN KEY ("cliente_id")
---             REFERENCES "cliente"("cliente_id"),
---         CONSTRAINT fk_orcamento
---             FOREIGN KEY ("orcamento_id")
---             REFERENCES "orcamento"("orcamento_id"),
---         CONSTRAINT fk_pagamento
---             FOREIGN KEY ("pagamento_id")
---             REFERENCES "pagamento"("pagamento_id")
--- );
-
--- CREATE TABLE "produto" (
---     "produto_id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     "produto_nome" varchar(255),
---     "produto_valor" decimal (10,2),
---     "produto_descricao" varchar(255),
---     --"produto_imagem" bytea CHECK (octet_length("produto_imagem") <= 52428800),  Limite de 50 MB
---     "produto_status" varchar(255) NOT NULL DEFAULT 'ativo'
-);
 
 '''

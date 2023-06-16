@@ -22,9 +22,9 @@
             <div class="card-wrapper" id="first">
                 <div class="card">
 
-                    <h2>Energy Requirement Calculation</h2>
+                    <h2>Cálculo do Requerimento de Energia</h2>
                     <div class="energy-container">
-                        <span>Daily Energy Usage (kWhr / day): </span>
+                        <span>Uso diário de energia (kWhr / dia): </span>
                         <div class="text-field-group">
                         <!-- MODIFICAÇÃO BD name = "KWHRDIA" value = "{{request.form['KWHRDIA']}}"-->
                             <input class="textarea" id="requirement" type="number" name="KWHRDIA" value="{{request.form['KWHRDIA']}}" required>
@@ -32,7 +32,7 @@
                             <label class="Label">kWhr</lable>
                         </div>
                     </div>
-                    <div style="margin-top: 3rem; font-size: 1.25rem;">% Energy to be derieved from Solar:</div>
+                    <div style="margin-top: 3rem; font-size: 1.25rem;">% de energia a ser derivada da energia solar:</div>
                     <div class="slider">
                         <!-- MODIFICAÇÃO BD name="ENERGIASOL" value="{{request.form['ENERGIASOL=13']}}"-->
                         <input type="range" id="slider1" name="ENERGIASOL" value="{{request.form['ENERGIASOL']}}" oninput="rangevalue1.value=value" />
@@ -48,7 +48,7 @@
                             </select>
                             <span class="select-highlight"></span>
                             <span class="select-bar"></span>
-                            <label class="select-label">State</label>
+                            <label class="select-label">Estado</label>
                         </div>
                         <div class="select">
                             <!-- MODIFICAÇÃO BD name="CIDADE" value="{{request.form['CIDADE']}}" -->
@@ -59,15 +59,15 @@
                             </select>
                             <span class="select-highlight"></span>
                             <span class="select-bar"></span>
-                            <label class="select-label">City</label>
+                            <label class="select-label">Cidade</label>
                         </div>
                         <div>
-                            <span id='sunHours'>Solar Irradiation: </span>
+                            <span id='sunHours'>Irradiação Solar:</span>
                         </div>
                     </div>
                     <a href="#second">
                         <div class="nav-button" id="systemConstrain">
-                            Next
+                            Próximo
                         </div>
                     </a>
                 </div>
@@ -75,21 +75,21 @@
             <div class="card-wrapper" id="second">
                 <div class="card">
 
-                    <h2>Array Size Calculation</h2>
+                    <h2>Cálculo do tamanho da matriz</h2>
 
                     <div class="radio-group">
                         <label for="r7">
                             <!-- MODIFICAÇÃO BD name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" ainda não fiz as moficações-->
-                            <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" checked /><span>Standard Panels (15%)</span>
+                            <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" checked /><span>Painéis Padrão (15%)</span>
                         </label>
                         <label for="r8">
-                            <input id="r8" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Premium Panels (20%)</span>
+                            <input id="r8" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Painéis Premium (20%)</span>
                         </label>
                         <label for="r9">
-                            <input id="r9" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Thin Film Panels (13%)</span>
+                            <input id="r9" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" /><span>Painéis de película fina (13%)</span>
                         </label>
                     </div>
-                    <div style="margin-top: 3rem; font-size: 1.25rem;">Module Wattage:</div>
+                    <div style="margin-top: 3rem; font-size: 1.25rem;">Potência do Módulo:</div>
                     <div class="slider">
                         <!-- MODIFICAÇÃO BD name="MODULOWATT" value="{{request.form['MODULOWATT']}}"-->
                         <input id="rv3" type="range" min="5" max="400" step="5" name="MODULOWATT" value="{{request.form['MODULOWATT']}}" oninput="rangevalue3.value=value" />
@@ -98,12 +98,12 @@
                     <div id="solarPanel" class="nav-button-list">
                         <a href="#first">
                             <div class="nav-button">
-                                Previous
+                                Anterior
                             </div>
                         </a>
                         <a href="#third">
                             <div class="nav-button">
-                                Next
+                                Próximo
                             </div>
                         </a>
                     </div>
@@ -111,35 +111,35 @@
             </div>
             <div class="card-wrapper" id="third">
                 <div class="card">
-                    <h2>Advanced Parameters</h2>
+                    <h2>Parâmetros Avançados</h2>
                     <div class="default-parameters">
                         <div class="form__group">
-                            <label for="num1" class="form__label">Operating Temperature (*C)</label>
+                            <label for="num1" class="form__label">Temperatura operacional (*C)</label>
                                 <!-- MODIFICAÇÃO BD name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}"-->
                                 <input type="number" id="opTemp" class="form__field" name="TEMPERATURAOPCAO" value="{{request.form['TEMPERATURAOPCAO']}}" />
                         </div>
                         <div class="form__group">
-                            <label for="num2" class="form__label">Inverter Losses (%)</label>
+                            <label for="num2" class="form__label">Perdas do inversor (%)</label>
                                 <!-- MODIFICAÇÃO BD name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}"-->
                                 <input type="number" id="inverterLoss" class="form__field" name="PERDASINVERSOR" value="{{request.form['PERDASINVERSOR']}}" value=10>
                         </div>
                         <div class="form__group">
-                            <label for="num6" class="form__label">Inverter Safety Factor (%)</label>
+                            <label for="num6" class="form__label">Fator de segurança do inversor (%)</label>
                                 <!-- MODIFICAÇÃO BD name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}"-->
                                 <input type="number" id="safety-factor" class="form__field" name="FATORSEGURANCAINVERSOR" value="{{request.form['FATORSEGURANCAINVERSOR']}}" value=15>
                         </div>
                         <div class="form__group">
-                            <label for="num3" class="form__label">Wiring and Cable Losses (%)</label>
+                            <label for="num3" class="form__label">Perdas de Fiação e Cabo (%)</label>
                                 <!-- MODIFICAÇÃO BD name="PERDASCABO" value="{{request.form['PERDASCABO']}}"-->
                                 <input type="number" id="cableLoss" class="form__field" name="PERDASCABO" value="{{request.form['PERDASCABO']}}" value=5>
                         </div>
                         <div class="form__group">
-                            <label for="num4" class="form__label">Mismatch Losses (%)</label>
+                            <label for="num4" class="form__label">Perdas por incompatibilidade (%)</label>
                                 <!-- MODIFICAÇÃO BD name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}"-->
                                 <input type="number" id="mismatchLoss" class="form__field" name="PERDASINCOMPATIBILIDADE" value="{{request.form['PERDASINCOMPATIBILIDADE']}}">
                         </div>
                         <div class="form__group">
-                            <label for="num5" class="form__label">Soiling & Shading Losses (%)</label>
+                            <label for="num5" class="form__label">Perdas de sujeira e sombreamento (%)</label>
                                 <!-- MODIFICAÇÃO BD name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}"-->
                                 <input type="number" id="soilingLoss" class="form__field" name="PERDASSUJEIRA" value="{{request.form['PERDASSUJEIRA']}}" value=2>
                         </div>
@@ -150,24 +150,24 @@
             <div style="text-align:center;">
                 <button class="card-wrapper calculate"  type="submit"  onclick="calculate();">
                 <div class="card">
-                    <h2>Calculate</h2>
+                    <h2>Calcular</h2>
                 </div>
             </button> <!-- MODIFICAÇÃO BD troquei o div por button-->
             </div>
             <div class="card-wrapper">
                 <div class="card">
 
-                    <h2>Results</h2>
+                    <h2>Resultados</h2>
 
                     <div class="results">
-                        <div>Size of Power Plant: <span class="final-result">0</span>kW</div>
-                        <div>Power Plant Output: <span class="final-result">0</span>kW</div>
-                        <div>Total Area Required: <span class="final-result">0</span>m<sup>2</sup></div>
-                        <div>Module Rating: <span class="final-result">0</span>W</div>
-                        <div>Number of Modules Required: <span class="final-result">0</span></div>
-                        <div>Inverter Power Rating: <span class="final-result">0</span>kW</div>
-                        <div>Total Cost (excluding 30% subsidy): ₹<span class="final-result">0</span></div>
-                        <div>Government Subsidized Cost: ₹<span class="final-result">0</span></div>
+                        <div>Tamanho da Usina: <span class="final-result">0</span>kW</div>
+                        <div>Potência da usina: <span class="final-result">0</span>kW</div>
+                        <div>Área Total Necessária: <span class="final-result">0</span>m<sup>2</sup></div>
+                        <div>Classificação do Módulo: <span class="final-result">0</span>W</div>
+                        <div>Número de módulos necessários: <span class="final-result">0</span></div>
+                        <div>Classificação de potência do inversor: <span class="final-result">0</span>kW</div>
+                        <div>Custo total (excluindo subsídio de 30%): <span class="final-result">0</span></div>
+                        <div>Custo subsidiado pelo governo: <span class="final-result">0</span></div>
                     </div>
                 </div>
             </div>

@@ -60,9 +60,20 @@ def hybrid():
             values(DEFAULT , DEFAULT , 'HYBRID', '{request.form['KWHRDIA']}', '{request.form['ENERGIASOL']}', '{request.form['ESTADO']}', '{request.form['CIDADE']}', '{request.form['BATERIAVOLTS']}', '{request.form['ENERGIADIARESERVA']}', '{request.form['PAINELTIPO']}', '{request.form['MODULOWATT']}', '{request.form['TEMPERATURAOPCAO']}', '{request.form['PERDASINVERSOR']}', '{request.form['FATORSEGURANCAINVERSOR']}', '{request.form['PERDASCABO']}', '{request.form['PERDASINCOMPATIBILIDADE']}', '{request.form['PERDASSUJEIRA']}', '{request.form['PROFUNDIDADE']}', '{request.form['BATERIAEFICIENCIA']}')
             ''')
         
+        # variáveis para rodar na página
+        tamanhoUsina = 15 > 6
+        PotenciaUsina = "5456"
+        areaTotal = "resposta1"
+        classificaModulo = "resposta12"
+        numModulos = "resposta13"
+        capacidadeBateria = "resposta14"
+        potenciaInversor = "resposta15"
+        CustoTotal = "resposta16"
+        custoSubGov = "resposta17"
         if resultado:
+            return render_template('hybrid.html',tamanhoUsina= "Insira o valor aqui",PotenciaUsina=PotenciaUsina,areaTotal=areaTotal,classificaModulo=classificaModulo,numModulos=numModulos,capacidadeBateria="padrão",potenciaInversor=potenciaInversor,CustoTotal=CustoTotal,custoSubGov=custoSubGov) # MODIFICAÇÃO 
 
-            return redirect(url_for("login"))
+            # return redirect(url_for("login"))
         else:
             return "Erro na inserção"
 
