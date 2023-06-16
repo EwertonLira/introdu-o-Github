@@ -1,4 +1,4 @@
-fetch('/data.json')
+fetch('/static/data.json')
     .then(response => {
         return response.json();
     })

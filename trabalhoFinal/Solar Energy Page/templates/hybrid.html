@@ -34,7 +34,7 @@
                         </div>
                         <div style="margin-top: 3rem; font-size: 1.4rem;">% Energy to be derieved from Solar</div>
                         <div class="slider">
-                            <!-- MODIFICAÇÃO BD name="ENERGIASOL" value="{{request.form['ENERGIASOL=13']}}"-->
+                            <!-- MODIFICAÇÃO BD name="ENERGIASOL" value="{{request.form['ENERGIASOL']}}"-->
                             <input type="range" id="slider1" name="ENERGIASOL" value="{{request.form['ENERGIASOL']}}" oninput="rangevalue1.value=value" />
                             <output id="rangevalue1">50</output>
                         </div>
@@ -127,7 +127,7 @@
                         <div class="radio-group">
                             <label for="r7">
                                 <!-- MODIFICAÇÃO BD name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}"-->
-                                <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" value="standard panels (15%)" checked /><span>Standard Panels (15%)</span>
+                                <input id="r7" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}" checked /><span>Standard Panels (15%)</span>
                             </label>
                             <label for="r8">
                                 <input id="r8" type="radio" name="PAINELTIPO" value="{{request.form['PAINELTIPO']}}"/><span>Premium Panels (20%)</span>

@@ -29,8 +29,6 @@ class Conexao:
 
             return False
 
-
-
     def manipularBanco(self,sql):
         try:
             conn = psycopg2.connect(dbname = self._dbname, host = self._host,port = self._port, user = self._user, password = self._password)
